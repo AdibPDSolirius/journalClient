@@ -1,0 +1,65 @@
+<!--<div class="example-container">-->
+  <!--<mat-form-field hintLabel="Max 30 characters">-->
+    <!--<input matInput [(ngModel)]="resource.name"  #name=ngModel minlength="1" maxlength="30" placeholder="Name">-->
+    <!--<mat-hint align="end">{{name.value?.length || 0}}/30</mat-hint>-->
+  <!--</mat-form-field>-->
+  <!--<mat-form-field><input matInput [(ngModel)]="resource.url" #url placeholder="URL"></mat-form-field>-->
+  <!--<mat-form-field>-->
+    <!--<mat-select [(value)]="selectedLanguage">-->
+      <!--<li *ngFor="let language of languages">-->
+        <!--<mat-option value="{{language.id}}">{{language.name}}</mat-option>-->
+      <!--</li>-->
+    <!--</mat-select>-->
+    <!--<button  mat-button (click)="addLanguage()">Add language</button> <br>-->
+  <!--</mat-form-field>-->
+  <!--<mat-list role="list">-->
+    <!--<li *ngFor="let language of resource.languages">-->
+      <!--<mat-option value="{{language}}">{{language.name}}</mat-option>-->
+    <!--</li>-->
+  <!--</mat-list>-->
+  <!--<button mat-button (click)="onEnter()">Submit</button>-->
+
+<!--</div >-->
+
+<!--<div *ngIf="!isValid"-->
+     <!--class="alert alert-danger">-->
+  <!--Name is required-->
+<!--</div>-->
+
+<form [formGroup]="resourceForm" (ngSubmit)="onSubmit()">
+
+  <label>
+    Name:
+    <input type="text" formControlName="name" required>
+  </label>
+  <br>
+  <label>
+    URL:
+    <input type="text" formControlName="url">
+  </label>
+<br>
+
+
+  <h3>Languages</h3>
+  <form [formGroup]="selectedLanguage">
+   <select>
+      <option formControlName="name" *ngFor="let language of languages" [value]="language">{{language.name}}</option>
+    </select>
+    <br>
+    <input type="submit" (click)="addLanguage()" value="Add Language">
+  </form>
+
+  <div formArrayName="languages">
+    <div *ngFor="let language of getLanguages().controls">
+      {{language}}
+    </div>
+  </div>
+
+
+
+
+  <br>
+  <br>
+  <button type="submit" [disabled]="!resourceForm.valid">Submit</button>
+</form>
+

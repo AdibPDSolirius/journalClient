@@ -1,0 +1,8 @@
+<h2>Resources</h2>
+<ul class="resources">
+  <li *ngFor="let resource of resources">
+    <button (click)="deleteResource(resource.id)">Delete</button>
+    {{resource.name}} <br>
+    <span>URL:</span> {{resource.url}}
+  </li>
+</ul>
