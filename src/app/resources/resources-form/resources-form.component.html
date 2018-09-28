@@ -41,17 +41,15 @@
 
 
   <h3>Languages</h3>
-  <form [formGroup]="selectedLanguage">
-   <select>
-      <option formControlName="name" *ngFor="let language of languages" [value]="language">{{language.name}}</option>
+  <select #selectedLanguage>
+      <option *ngFor="let language of languages; let i = index" [value]="i">{{language.name}}</option>
     </select>
     <br>
-    <input type="submit" (click)="addLanguage()" value="Add Language">
-  </form>
+  <input type="button" (click)="addLanguage(selectedLanguage.value)" value="Add Language">
 
   <div formArrayName="languages">
     <div *ngFor="let language of getLanguages().controls">
-      {{language}}
+      {{language.value.name}}
     </div>
   </div>
 

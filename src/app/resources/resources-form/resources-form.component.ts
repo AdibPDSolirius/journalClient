@@ -24,11 +24,6 @@ export class ResourcesFormComponent implements OnInit {
   });
   languages: Language[];
 
-  selectedLanguage = new FormGroup({
-    id: new FormControl(''),
-    name: new FormControl('')
-  });
-
   constructor(private route: ActivatedRoute,
               private languageService: LanguageService,
               private resourceService: ResourceService
@@ -68,8 +63,12 @@ export class ResourcesFormComponent implements OnInit {
     return this.resourceForm.get('languages') as FormArray;
   }
 
-  addLanguage() {
-    console.log(this.selectedLanguage.getRawValue());
+  addLanguage(index: String) {
+    this.getLanguages().push(new FormGroup({
+      id: new FormControl(this.languages[+index].id),
+      name: new FormControl(this.languages[+index].name)
+    }));
+    console.log(this.languages[index]);
     // this.getLanguages().push(new FormGroup({
     //   id: new FormControl(value)
     // }));
@@ -93,6 +92,10 @@ export class ResourcesFormComponent implements OnInit {
      this.languageService.getLanguages().subscribe(languages => {
        this.languages = languages;
      });
+   }
+
+   languageToString(language: Language): String {
+      return language.name;
    }
 
 
