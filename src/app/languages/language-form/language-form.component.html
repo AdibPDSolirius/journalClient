@@ -6,6 +6,8 @@
   <!--<button mat-button (click)="onEnter(name.value)">Submit</button>-->
 <!--</div >-->
 
+<button (click)="goBack()">Back</button>
+<br><br>
 <form [formGroup]="languageForm" (ngSubmit)="onSubmit()">
   <label>
     Name:

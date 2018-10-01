@@ -1,9 +1,9 @@
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Location } from '@angular/common';
 import { Validators } from '@angular/forms';
 
-import { Language } from '../shared/language';
 import { LanguageService } from '../shared/language.service';
 
 @Component({
@@ -20,6 +20,7 @@ export class LanguageFormComponent implements OnInit {
   isUpdate: boolean;
 
   constructor(private route: ActivatedRoute,
+              private location: Location,
               private languageService: LanguageService) { }
 
   ngOnInit() {
@@ -27,6 +28,10 @@ export class LanguageFormComponent implements OnInit {
     if (this.isUpdate) {
       this.populateLanguageFields();
     }
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 
   onSubmit(): void {

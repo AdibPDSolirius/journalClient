@@ -1,7 +1,10 @@
 <h2>Languages</h2>
 <ul class="languages">
-  <li *ngFor="let language of languages; let i = index">
+  <li *ngFor="let language of languages; let i = index" routerLink="/language/update/{{language.id}}">
     <button (click)="deleteLanguageByIndex(i)">Delete</button>
     {{language.name}}
   </li>
 </ul>
+<nav>
+  <a routerLink="/language/create">Create</a>
+</nav>
