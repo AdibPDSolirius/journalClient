@@ -23,6 +23,7 @@ export class ResourcesFormComponent implements OnInit {
     languages: new FormArray([])
   });
   languages: Language[];
+  isUpdate: boolean;
 
   constructor(private route: ActivatedRoute,
               private languageService: LanguageService,
@@ -30,62 +31,64 @@ export class ResourcesFormComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.populateResourceFields();
+    this.determineIsUpdate();
+    if (this.isUpdate) {
+      this.populateResourceFields();
+    }
     this.populateLanguageFields();
 
   }
 
   onSubmit() {
-    console.log(this.resourceForm.getRawValue());
+    if (this.isUpdate) {
+      this.resourceService.updateResource(this.resourceForm.get('id').value, this.resourceForm.getRawValue()).subscribe()
+    } else {
+      this.resourceService.addResource(this.resourceForm.getRawValue()).subscribe();
+    }
   }
 
-
-   // onEnter() {
-   //  if (this.resource.name === '') {
-   //    this.isValid = false;
-   //  } else {
-   //    this.isValid = true;
-   //    if (this.isUpdate) {
-   //      this.resourceService.updateResource(+this.route.snapshot.paramMap.get('id'), this.resource).subscribe(resource =>
-   //      console.log(resource)
-   //      );
-   //    } else {
-   //      this.resource.languages = this.selectedLanguages;
-   //      console.log(this.resource);
-   //      // this.resourceService.addResource(this.resource).subscribe(resource =>
-   //      //   console.log(resource)
-   //      // );
-   //    }
-   //  }
-   // }
+  determineIsUpdate() {
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id) {
+      this.isUpdate = true;
+    } else {
+      this.isUpdate = false;
+    }
+  }
+  deleteLanguageByIndex(index: number) {
+    this.getLanguages().removeAt(index);
+  }
 
   getLanguages() {
     return this.resourceForm.get('languages') as FormArray;
   }
 
-  addLanguage(index: String) {
+  addLanguageByIndex(index: number) {
     this.getLanguages().push(new FormGroup({
-      id: new FormControl(this.languages[+index].id),
-      name: new FormControl(this.languages[+index].name)
+      id: new FormControl(this.languages[index].id),
+      name: new FormControl(this.languages[index].name)
     }));
-    console.log(this.languages[index]);
-    // this.getLanguages().push(new FormGroup({
-    //   id: new FormControl(value)
-    // }));
+  }
+
+  addLanguage(language: Language) {
+    this.getLanguages().push(new FormGroup({
+      id: new FormControl(language.id),
+      name: new FormControl(language.name)
+    }));
   }
 
    populateResourceFields() {
      const id = this.route.snapshot.paramMap.get('id');
-     if (id) {
-       this.resourceService.getResource(+id).subscribe(resource => {
-         this.resourceForm.patchValue({
-           id: resource.id,
-           name: resource.name,
-           url: resource.url,
-           languages: resource.languages
-         });
+     this.resourceService.getResource(+id).subscribe(resource => {
+       this.resourceForm.patchValue({
+         id: resource.id,
+         name: resource.name,
+         url: resource.url,
        });
-     }
+       for (const language of resource.languages) {
+         this.addLanguage(language);
+       }
+     });
    }
 
    populateLanguageFields() {
@@ -93,10 +96,5 @@ export class ResourcesFormComponent implements OnInit {
        this.languages = languages;
      });
    }
-
-   languageToString(language: Language): String {
-      return language.name;
-   }
-
 
 }

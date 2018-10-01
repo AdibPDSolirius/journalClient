@@ -20,8 +20,11 @@ export class ResourceListComponent implements OnInit {
     );
   }
 
-  deleteResource(id: number): void {
-    this.resourceService.deleteResource(id).subscribe();
+  deleteResourceByIndex(index: number): void {
+    if (index > -1) {
+      this.resourceService.deleteResource(this.resources[index].id).subscribe();
+      this.resources.splice(index, 1);
+    }
   }
 
 }

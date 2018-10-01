@@ -6,9 +6,12 @@
   <!--<button mat-button (click)="onEnter(name.value)">Submit</button>-->
 <!--</div >-->
 
-<label>
-  Name:
-  <input type="text" [formControl]="name">
-  {{name.value}}
+<form [formGroup]="languageForm" (ngSubmit)="onSubmit()">
+  <label>
+    Name:
+    <input type="text" formControlName="name">
+  </label>
+  <br>
+  <button type="submit" [disabled]="!languageForm.valid">Submit</button>
 
-</label>
+</form>

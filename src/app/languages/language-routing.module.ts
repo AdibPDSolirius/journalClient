@@ -7,7 +7,8 @@ import { LanguageFormComponent } from './language-form/language-form.component';
 const routes: Routes = [
   {path: '', redirectTo: 'languages', pathMatch: 'full'},
   {path: 'languages', component: LanguageListComponent},
-  {path: 'create', component: LanguageFormComponent}
+  {path: 'create', component: LanguageFormComponent},
+  {path: 'update/:id', component: LanguageFormComponent}
 ];
 
 @NgModule({

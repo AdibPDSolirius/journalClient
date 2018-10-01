@@ -45,11 +45,12 @@
       <option *ngFor="let language of languages; let i = index" [value]="i">{{language.name}}</option>
     </select>
     <br>
-  <input type="button" (click)="addLanguage(selectedLanguage.value)" value="Add Language">
+  <input type="button" (click)="addLanguageByIndex(+selectedLanguage.value)" value="Add Language">
 
   <div formArrayName="languages">
     <div *ngFor="let language of getLanguages().controls">
       {{language.value.name}}
+      <input type="button" (click)="deleteLanguageByIndex(+selectedLanguage.value)" value="Delete Language">
     </div>
   </div>
 

@@ -1,6 +1,7 @@
 <h2>Languages</h2>
 <ul class="languages">
-  <li *ngFor="let language of languages">
+  <li *ngFor="let language of languages; let i = index">
+    <button (click)="deleteLanguageByIndex(i)">Delete</button>
     {{language.name}}
   </li>
 </ul>

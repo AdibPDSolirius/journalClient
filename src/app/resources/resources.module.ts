@@ -7,7 +7,6 @@ import { MatSelectModule } from '@angular/material';
 import { MatListModule } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { ResourceDetailComponent } from './resource-detail/resource-detail.component';
 import { ResourcesFormComponent } from './resources-form/resources-form.component';
 import { ResourceListComponent } from './resource-list/resource-list.component';
 import { ResourceRoutingModule } from './resource-routing.module';
@@ -26,7 +25,6 @@ import { ResourceRoutingModule } from './resource-routing.module';
 
   ],
   declarations: [
-    ResourceDetailComponent,
     ResourcesFormComponent,
     ResourceListComponent
   ]
