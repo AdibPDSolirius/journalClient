@@ -2,11 +2,11 @@ import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormArray } from '@angular/forms';
 import { FormGroup, FormControl} from '@angular/forms';
+import { Location } from '@angular/common';
 import { Validators } from '@angular/forms';
 
 import {Language} from '../../languages/shared/language';
 import { LanguageService } from '../../languages/shared/language.service';
-import { Resource } from '../shared/resource';
 import { ResourceService} from '../shared/resource.service';
 
 @Component({
@@ -26,6 +26,7 @@ export class ResourcesFormComponent implements OnInit {
   isUpdate: boolean;
 
   constructor(private route: ActivatedRoute,
+              private location: Location,
               private languageService: LanguageService,
               private resourceService: ResourceService
   ) {}
@@ -47,7 +48,11 @@ export class ResourcesFormComponent implements OnInit {
     }
   }
 
-  determineIsUpdate() {
+  goBack(): void {
+    this.location.back();
+  }
+
+  determineIsUpdate(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.isUpdate = true;
@@ -55,29 +60,29 @@ export class ResourcesFormComponent implements OnInit {
       this.isUpdate = false;
     }
   }
-  deleteLanguageByIndex(index: number) {
+  deleteLanguageByIndex(index: number): void {
     this.getLanguages().removeAt(index);
   }
 
-  getLanguages() {
+  getLanguages(): FormArray {
     return this.resourceForm.get('languages') as FormArray;
   }
 
-  addLanguageByIndex(index: number) {
+  addLanguageByIndex(index: number): void {
     this.getLanguages().push(new FormGroup({
       id: new FormControl(this.languages[index].id),
       name: new FormControl(this.languages[index].name)
     }));
   }
 
-  addLanguage(language: Language) {
+  addLanguage(language: Language): void {
     this.getLanguages().push(new FormGroup({
       id: new FormControl(language.id),
       name: new FormControl(language.name)
     }));
   }
 
-   populateResourceFields() {
+   populateResourceFields(): void {
      const id = this.route.snapshot.paramMap.get('id');
      this.resourceService.getResource(+id).subscribe(resource => {
        this.resourceForm.patchValue({
@@ -91,7 +96,7 @@ export class ResourcesFormComponent implements OnInit {
      });
    }
 
-   populateLanguageFields() {
+   populateLanguageFields(): void {
      this.languageService.getLanguages().subscribe(languages => {
        this.languages = languages;
      });

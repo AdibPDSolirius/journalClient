@@ -20,7 +20,7 @@ export class LanguageListComponent implements OnInit {
     });
   }
 
-  deleteLanguageByIndex(index: number) {
+  deleteLanguageByIndex(index: number): void {
     if (index > -1) {
       this.languageService.deleteLanguage(this.languages[index].id).subscribe();
       this.languages.splice(index, 1);

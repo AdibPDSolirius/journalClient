@@ -29,21 +29,15 @@ export class LanguageFormComponent implements OnInit {
     }
   }
 
-  onSubmit() {
+  onSubmit(): void {
     if (this.isUpdate) {
       this.languageService.updateLanguage(this.languageForm.get('id').value, this.languageForm.getRawValue()).subscribe();
     } else {
       this.languageService.addLanguage(this.languageForm.getRawValue()).subscribe();
     }
-    // this.language = {
-    //   name: name,
-    // };
-    // // this.languageService.addLanguage(this.language).subscribe(language =>
-    // //   console.log(language)
-    // // );
   }
 
-  determineIsUpdate() {
+  determineIsUpdate(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.isUpdate = true;
@@ -52,13 +46,13 @@ export class LanguageFormComponent implements OnInit {
     }
   }
 
-  populateLanguageFields() {
+  populateLanguageFields(): void {
     const id = this.route.snapshot.paramMap.get('id');
     this.languageService.getLanguage(+id).subscribe(language => {
       this.languageForm.patchValue({
         id: language.id,
         name: language.name
-      })
+      });
     });
   }
 
