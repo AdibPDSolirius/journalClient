@@ -16,23 +16,23 @@ export class LanguageService {
 
   constructor(private http: HttpClient) { }
 
-  getLanguages(): Observable<any> {
+  getAll(): Observable<any> {
     return this.http.get('http://localhost:8080/languages');
   }
 
-  getLanguage(id: number): Observable<any> {
+  get(id: number): Observable<any> {
     return this.http.get('http://localhost:8080/languages/' + id);
   }
 
-  addLanguage(language: Language): Observable<Language> {
+  add(language: Language): Observable<Language> {
     return this.http.post<Language>('http://localhost:8080/languages', language, httpOptions);
   }
 
-  updateLanguage(id: number, language: Language): Observable<Language> {
+  update(id: number, language: Language): Observable<Language> {
     return this.http.put<Language>('http://localhost:8080/languages/' + id, language, httpOptions);
   }
 
-  deleteLanguage(id: number): Observable<any> {
+  delete(id: number): Observable<any> {
     return this.http.delete('http://localhost:8080/languages/' + id);
   }
 }

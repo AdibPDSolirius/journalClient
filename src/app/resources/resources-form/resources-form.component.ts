@@ -1,9 +1,7 @@
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { FormArray } from '@angular/forms';
-import { FormGroup, FormControl} from '@angular/forms';
+import { FormArray, FormGroup, FormControl, Validators  } from '@angular/forms';
 import { Location } from '@angular/common';
-import { Validators } from '@angular/forms';
 
 import {Language} from '../../languages/shared/language';
 import { LanguageService } from '../../languages/shared/language.service';
@@ -97,7 +95,7 @@ export class ResourcesFormComponent implements OnInit {
    }
 
    populateLanguageFields(): void {
-     this.languageService.getLanguages().subscribe(languages => {
+     this.languageService.getAll().subscribe(languages => {
        this.languages = languages;
      });
    }

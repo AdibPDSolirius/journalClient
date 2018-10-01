@@ -15,14 +15,14 @@ export class LanguageListComponent implements OnInit {
   constructor(private languageService: LanguageService) { }
 
   ngOnInit() {
-    this.languageService.getLanguages().subscribe(languages => {
+    this.languageService.getAll().subscribe(languages => {
       this.languages = languages;
     });
   }
 
   deleteLanguageByIndex(index: number): void {
     if (index > -1) {
-      this.languageService.deleteLanguage(this.languages[index].id).subscribe();
+      this.languageService.delete(this.languages[index].id).subscribe();
       this.languages.splice(index, 1);
     }
   }

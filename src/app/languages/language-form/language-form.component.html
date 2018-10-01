@@ -1,18 +1,1 @@
-<!--<div class="example-container">-->
-  <!--<mat-form-field hintLabel="Max 30 characters">-->
-    <!--<input matInput #name maxlength="30" placeholder="Name">-->
-    <!--<mat-hint align="end">{{name.value?.length || 0}}/30</mat-hint>-->
-  <!--</mat-form-field>-->
-  <!--<button mat-button (click)="onEnter(name.value)">Submit</button>-->
-<!--</div >-->
-
-<button (click)="goBack()">Back</button>
-<br><br>
-<form [formGroup]="languageForm" (ngSubmit)="onSubmit()">
-  <label>
-    Name:
-    <input type="text" formControlName="name">
-  </label>
-  <br>
-  <button type="submit" [disabled]="!languageForm.valid">Submit</button>
-</form>
+<app-dynamic-form [service]="getLanguageService()" ></app-dynamic-form>

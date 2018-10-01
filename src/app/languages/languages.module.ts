@@ -4,6 +4,7 @@ import { MatInputModule } from '@angular/material';
 import { MatFormFieldModule} from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { DynamicFormModule } from '../shared/dynamic-form.module';
 import { LanguageListComponent } from './language-list/language-list.component';
 import { LanguageFormComponent } from './language-form/language-form.component';
 import { LanguageRoutingModule } from './language-routing.module';
@@ -12,6 +13,7 @@ import { LanguageRoutingModule } from './language-routing.module';
   imports: [
     CommonModule,
     LanguageRoutingModule,
+    DynamicFormModule,
     MatInputModule,
     MatFormFieldModule,
     ReactiveFormsModule
