@@ -6,7 +6,8 @@ const routes: Routes = [
   {path: '', redirectTo: 'resource/resources', pathMatch: 'full'},
   {path: 'resource', loadChildren: 'src/app/resources/resources.module#ResourcesModule'},
   {path: 'language', loadChildren: 'src/app/languages/languages.module#LanguagesModule'},
-  {path: 'database', loadChildren: 'src/app/databases/databases.module#DatabasesModule'}
+  {path: 'database', loadChildren: 'src/app/databases/databases.module#DatabasesModule'},
+  {path: 'framework', loadChildren: 'src/app/frameworks/frameworks.module#FrameworksModule'}
 ]
 @NgModule({
   imports: [
