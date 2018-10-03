@@ -12,7 +12,7 @@ import { ResourceService} from '../shared/resource.service';
 export class ResourceListComponent implements OnInit {
 
   resources: Resource[];
-  displayedColumns = ['Name', 'URL', 'Databases'];
+  displayedColumns = ['Name', 'URL', 'Databases', 'Frameworks', 'Languages', 'Libraries'];
 
   constructor(private route: ActivatedRoute,
               private resourceService: ResourceService) { }

@@ -71,10 +71,6 @@ export class ResourcesFormComponent implements OnInit {
     }
   }
 
-  goBack(): void {
-    this.location.back();
-  }
-
   determineIsUpdate(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
