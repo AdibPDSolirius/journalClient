@@ -13,6 +13,7 @@ import { LanguageService } from '../../languages/shared/language.service';
 import { ResourceService } from '../shared/resource.service';
 import { Library } from '../../libraries/shared/library';
 import { LibraryService } from '../../libraries/shared/library.service';
+import {CustomValidators} from 'ngx-custom-validators';
 
 @Component({
   selector: 'app-resources-form',
@@ -24,7 +25,7 @@ export class ResourcesFormComponent implements OnInit {
   resourceForm = new FormGroup({
     id: new FormControl(''),
     name: new FormControl('', Validators.required),
-    url: new FormControl(''),
+    url: new FormControl('', CustomValidators.url),
     languages: new FormArray([]),
     libraries: new FormArray([]),
     databases: new FormArray([]),
