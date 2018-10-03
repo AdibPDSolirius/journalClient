@@ -11,6 +11,7 @@ import { LanguageService } from '../shared/language.service';
 export class LanguageListComponent implements OnInit {
 
   languages: Language[];
+  displayedColumns = ['Name'];
 
   constructor(private languageService: LanguageService) { }
 

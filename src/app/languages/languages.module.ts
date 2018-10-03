@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatInputModule } from '@angular/material';
-import { MatFormFieldModule} from '@angular/material';
+import { MatButtonModule } from '@angular/material';
+import { MatTableModule } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { DynamicFormModule } from '../shared/dynamic-form.module';
@@ -14,8 +14,8 @@ import { LanguagesRoutingModule } from './languages-routing.module';
     CommonModule,
     LanguagesRoutingModule,
     DynamicFormModule,
-    MatInputModule,
-    MatFormFieldModule,
+    MatButtonModule,
+    MatTableModule,
     ReactiveFormsModule
   ],
   declarations: [

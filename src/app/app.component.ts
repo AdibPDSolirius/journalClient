@@ -7,9 +7,9 @@ import {Component, OnInit} from '@angular/core';
 })
 export class AppComponent implements OnInit{
   title = 'Adibs Journal';
-  links: [{
-    name: String,
-    path: String
+  links = [{
+    name: 'Resources',
+    path: '/resource'
   }];
 
   ngOnInit() {
@@ -17,11 +17,10 @@ export class AppComponent implements OnInit{
   }
 
   populateLinksField(): void {
-    this.links = [];
-    this.links.push({
+    this.links = [{
       name: 'Resources',
       path: '/resource'
-    });
+    }];
     this.links.push({
       name: 'Databases',
       path: '/database'
