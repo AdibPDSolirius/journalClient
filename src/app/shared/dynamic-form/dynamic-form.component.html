@@ -1,11 +1,17 @@
-<button (click)="goBack()">Back</button>
+<!--<br><br>-->
+<!--<form [formGroup]="formGroup" (ngSubmit)="onSubmit()">-->
+  <!--<label>-->
+  <!--Name:-->
+  <!--<input type="text" formControlName="name">-->
+  <!--</label>-->
+  <!--<br>-->
+  <!--<button type="submit" [disabled]="!formGroup.valid">Submit</button>-->
+<!--</form>-->
 
-<br><br>
-<form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
-  <label>
-  Name:
-  <input type="text" formControlName="name">
-  </label>
+<form class="form-container" [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+  <mat-form-field>
+    <input matInput formControlName="name" placeholder="Name">
+  </mat-form-field>
   <br>
-  <button type="submit" [disabled]="!formGroup.valid">Submit</button>
+  <button mat-raised-button type="submit" [disabled]="!formGroup.valid">Submit</button>
 </form>
