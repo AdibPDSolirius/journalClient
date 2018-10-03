@@ -32,9 +32,13 @@ export class DynamicFormComponent implements OnInit {
 
   onSubmit(): void {
     if (this.isUpdate) {
-      this.service.update(this.formGroup.get('id').value, this.formGroup.getRawValue()).subscribe();
+      this.service.update(this.formGroup.get('id').value, this.formGroup.getRawValue()).subscribe(data => {
+        this.goBack();
+      });
     } else {
-      this.service.add(this.formGroup.getRawValue()).subscribe();
+      this.service.add(this.formGroup.getRawValue()).subscribe(data => {
+        this.goBack();
+    });
     }
   }
 
