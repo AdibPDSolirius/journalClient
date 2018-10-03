@@ -7,7 +7,8 @@ const routes: Routes = [
   {path: 'resource', loadChildren: 'src/app/resources/resources.module#ResourcesModule'},
   {path: 'language', loadChildren: 'src/app/languages/languages.module#LanguagesModule'},
   {path: 'database', loadChildren: 'src/app/databases/databases.module#DatabasesModule'},
-  {path: 'framework', loadChildren: 'src/app/frameworks/frameworks.module#FrameworksModule'}
+  {path: 'framework', loadChildren: 'src/app/frameworks/frameworks.module#FrameworksModule'},
+  {path: 'library', loadChildren: 'src/app/libraries/libraries.module#LibrariesModule'}
 ]
 @NgModule({
   imports: [

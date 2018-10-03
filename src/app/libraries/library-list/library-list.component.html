@@ -1,0 +1,10 @@
+<h2>Libraries</h2>
+<ul class="libraries">
+  <li *ngFor="let library of libraries; let i = index" routerLink="/library/update/{{library.id}}">
+    <button (click)="deleteLibraryByIndex(i)">Delete</button>
+    {{library.name}}
+  </li>
+</ul>
+<nav>
+  <a routerLink="/library/create">Create</a>
+</nav>

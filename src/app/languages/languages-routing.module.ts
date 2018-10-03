@@ -19,4 +19,4 @@ const routes: Routes = [
     RouterModule
   ]
 })
-export class LanguageRoutingModule { }
+export class LanguagesRoutingModule { }

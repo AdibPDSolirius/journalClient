@@ -7,12 +7,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DynamicFormModule } from '../shared/dynamic-form.module';
 import { LanguageListComponent } from './language-list/language-list.component';
 import { LanguageFormComponent } from './language-form/language-form.component';
-import { LanguageRoutingModule } from './language-routing.module';
+import { LanguagesRoutingModule } from './languages-routing.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    LanguageRoutingModule,
+    LanguagesRoutingModule,
     DynamicFormModule,
     MatInputModule,
     MatFormFieldModule,
