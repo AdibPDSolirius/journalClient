@@ -15,16 +15,10 @@ export class DatabaseListComponent implements OnInit {
   constructor(private databaseService: DatabaseService) { }
 
   ngOnInit() {
-    this.databaseService.getAll().subscribe(databases => {
-      this.databases = databases;
-    });
   }
 
-  deleteDatabaseByIndex(index: number): void {
-    if (index > -1) {
-      this.databaseService.delete(this.databases[index].id).subscribe();
-      this.databases.splice(index, 1);
-    }
+  getDatabaseService(): DatabaseService {
+    return this.databaseService;
   }
 
 }

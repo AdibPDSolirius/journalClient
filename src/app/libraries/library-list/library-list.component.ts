@@ -10,21 +10,13 @@ import { LibraryService } from '../shared/library.service';
 })
 export class LibraryListComponent implements OnInit {
 
-  libraries: Library[];
-
-  constructor(private librarySercie: LibraryService) { }
+  constructor(private libraryService: LibraryService) { }
 
   ngOnInit() {
-    this.librarySercie.getAll().subscribe(libraries => {
-      this.libraries = libraries;
-    });
   }
 
-  deleteLibraryByIndex(index: number): void {
-    if (index > -1) {
-      this.librarySercie.delete(this.libraries[index].id).subscribe();
-      this.libraries.splice(index, 1);
-    }
+  getLibraryService(): LibraryService {
+    return this.libraryService;
   }
 
 }

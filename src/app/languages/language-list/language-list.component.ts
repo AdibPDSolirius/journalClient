@@ -10,22 +10,9 @@ import { LanguageService } from '../shared/language.service';
 })
 export class LanguageListComponent implements OnInit {
 
-  languages: Language[];
-  displayedColumns = ['Name'];
-
   constructor(private languageService: LanguageService) { }
 
   ngOnInit() {
-    this.languageService.getAll().subscribe(languages => {
-      this.languages = languages;
-    });
-  }
-
-  deleteLanguageByIndex(index: number): void {
-    if (index > -1) {
-      this.languageService.delete(this.languages[index].id).subscribe();
-      this.languages.splice(index, 1);
-    }
   }
 
   getLanguageService(): LanguageService {

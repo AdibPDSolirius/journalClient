@@ -1,10 +1,1 @@
-<h2>Frameworks</h2>
-<ul class="frameworks">
-  <li *ngFor="let framework of frameworks; let i = index" routerLink="/framework/update/{{framework.id}}">
-    <button (click)="deleteFrameworkByIndex(i)">Delete</button>
-    {{framework.name}}
-  </li>
-</ul>
-<nav>
-  <a routerLink="/framework/create">Create</a>
-</nav>
+<app-dynamic-list [service]="getFrameworkService()" name="framework"></app-dynamic-list>

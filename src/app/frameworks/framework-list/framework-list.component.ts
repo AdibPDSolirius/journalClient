@@ -15,16 +15,10 @@ export class FrameworkListComponent implements OnInit {
   constructor(private frameworkService: FrameworkService) { }
 
   ngOnInit() {
-    this.frameworkService.getAll().subscribe(frameworks => {
-      this.frameworks = frameworks;
-    });
   }
 
-  deleteFrameworkByIndex(index: number): void {
-    if (index > -1) {
-      this.frameworkService.delete(this.frameworks[index].id).subscribe();
-      this.frameworks.splice(index, 1);
-    }
+  getFrameworkService(): FrameworkService {
+    return this.frameworkService;
   }
 
 }

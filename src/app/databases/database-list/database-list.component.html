@@ -1,10 +1,1 @@
-<h2>Databases</h2>
-<ul class="databases">
-  <li *ngFor="let database of databases; let i = index" routerLink="/database/update/{{database.id}}">
-    <button (click)="deleteDatabaseByIndex(i)">Delete</button>
-    {{database.name}}
-  </li>
-</ul>
-<nav>
-  <a routerLink="/database/create">Create</a>
-</nav>
+<app-dynamic-list [service]="getDatabaseService()" name="database"></app-dynamic-list>
