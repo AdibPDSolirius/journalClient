@@ -1,5 +1,6 @@
 import { ActivatedRoute } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import { MatTableDataSource, MatPaginator } from '@angular/material';
 
 import { Resource } from '../shared/resource';
 import { ResourceService} from '../shared/resource.service';
@@ -11,8 +12,9 @@ import { ResourceService} from '../shared/resource.service';
 })
 export class ResourceListComponent implements OnInit {
 
-  resources: Resource[];
+  resources: MatTableDataSource<Resource>;
   displayedColumns = ['Name', 'URL', 'Databases', 'Frameworks', 'Languages', 'Libraries'];
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private route: ActivatedRoute,
               private resourceService: ResourceService) { }
@@ -51,32 +53,37 @@ export class ResourceListComponent implements OnInit {
   }
 
   populateWithAllResources(): void {
-    this.resourceService.getResources().subscribe(resources =>
-      this.resources = resources
-    );
+    this.resourceService.getResources().subscribe(resources => {
+      this.resources = new MatTableDataSource(resources);
+      this.resources.paginator = this.paginator;
+    });
   }
 
   populateResourcesByDatabaseId(id: number){
     this.resourceService.filterResourcesByDatabaseId(id).subscribe(resources => {
-      this.resources = resources;
+      this.resources = new MatTableDataSource(resources);
+      this.resources.paginator = this.paginator;
     });
   }
 
   populateResourcesByFrameworkId(id: number){
     this.resourceService.filterResourcesByFrameworkId(id).subscribe(resources => {
-      this.resources = resources;
+      this.resources = new MatTableDataSource(resources);
+      this.resources.paginator = this.paginator;
     });
   }
 
   populateResourcesByLanguageId(id: number){
     this.resourceService.filterResourcesByLanguageId(id).subscribe(resources => {
-      this.resources = resources;
+      this.resources = new MatTableDataSource(resources);
+      this.resources.paginator = this.paginator;
     });
   }
 
   populateResourcesByLibraryId(id: number){
     this.resourceService.filterResourcesByLibraryId(id).subscribe(resources => {
-      this.resources = resources;
+      this.resources = new MatTableDataSource(resources);
+      this.resources.paginator = this.paginator;
     });
   }
 
@@ -84,8 +91,12 @@ export class ResourceListComponent implements OnInit {
   deleteResourceByIndex(index: number): void {
     if (index > -1) {
       this.resourceService.deleteResource(this.resources[index].id).subscribe();
-      this.resources.splice(index, 1);
+      this.resources.data.splice(index, 1);
     }
+  }
+
+  applyFilter(filterValue: string) {
+    this.resources.filter = filterValue.trim().toLowerCase();
   }
 
 }

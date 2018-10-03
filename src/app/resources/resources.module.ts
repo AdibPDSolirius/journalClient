@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material';
 import { MatIconModule } from '@angular/material';
 import { MatInputModule } from '@angular/material';
 import { MatFormFieldModule } from '@angular/material';
+import { MatPaginatorModule } from '@angular/material';
 import { MatSelectModule } from '@angular/material';
 import { MatTableModule } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -22,6 +23,7 @@ import { ResourceRoutingModule } from './resource-routing.module';
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
+    MatPaginatorModule,
     MatSelectModule,
     MatTableModule,
     ResourceRoutingModule,

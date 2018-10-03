@@ -3,6 +3,9 @@
 <!--<button mat-raised-button (click)="removeColumn()"> Remove column </button>-->
 <!--<button mat-raised-button (click)="shuffle()"> Shuffle </button>-->
 
+<mat-form-field>
+  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+</mat-form-field>
 
 <table mat-table [dataSource]="resources" class="mat-elevation-z8" *ngIf="resources">
 
@@ -59,3 +62,5 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
+
+<mat-paginator [pageSizeOptions]="[5, 10]" showFirstLastButtons></mat-paginator>
