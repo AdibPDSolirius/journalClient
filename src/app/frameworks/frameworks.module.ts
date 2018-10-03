@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DynamicFormModule } from '../shared/dynamic-form.module';
+import { DynamicFormModule } from '../shared/dynamic-form/dynamic-form.module';
 
 
 import { FrameworkListComponent } from './framework-list/framework-list.component';

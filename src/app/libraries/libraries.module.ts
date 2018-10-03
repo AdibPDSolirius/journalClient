@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { DynamicFormModule } from '../shared/dynamic-form.module';
+import { DynamicFormModule } from '../shared/dynamic-form/dynamic-form.module';
 import { LibraryListComponent } from './library-list/library-list.component';
 import { LibrariesRoutingModule } from './libraries-routing.module';
 import { LibraryFormComponent } from './library-form/library-form.component';

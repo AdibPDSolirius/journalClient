@@ -1,9 +1,14 @@
-<!--<ul>-->
-  <!--<li *ngFor="let singleData of data; let i = index" routerLink="/library/update/{{library.id}}">-->
-    <!--<button (click)="deleteSingleDataByIndex(i)">Delete</button>-->
-    <!--{{data.name}}-->
-  <!--</li>-->
-<!--</ul>-->
-<!--<nav>-->
-  <!--<a routerLink="/library/create">Create</a>-->
-<!--</nav>-->
+<button mat-raised-button routerLink="/{{name | lowercase}}/create"> Add {{name | titlecase}}</button>
+
+<table mat-table [dataSource]="data" class="mat-elevation-z8" *ngIf="data">
+
+  <ng-container matColumnDef="Name">
+    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <td mat-cell *matCellDef="let singleData">
+      <a routerLink="/{{name | lowercase}}/update/{{singleData.id}}"> {{singleData.name}}</a>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

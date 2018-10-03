@@ -9,11 +9,10 @@ export class DynamicListComponent implements OnInit {
   @Input()
     service: any;
   @Input()
-    routerLinkUpdate: String;
-  @Input()
-    routerLinkCreate: String;
+    name: String;
 
   data: any[];
+  displayedColumns = ['Name'];
 
   constructor() { }
 

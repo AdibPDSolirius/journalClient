@@ -28,4 +28,8 @@ export class LanguageListComponent implements OnInit {
     }
   }
 
+  getLanguageService(): LanguageService {
+    return this.languageService;
+  }
+
 }

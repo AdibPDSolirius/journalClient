@@ -2,8 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
-import { DynamicListComponent } from './dynamic-list/dynamic-list.component';
+import { DynamicFormComponent } from './dynamic-form.component';
 
 @NgModule({
   imports: [
@@ -11,8 +10,7 @@ import { DynamicListComponent } from './dynamic-list/dynamic-list.component';
     ReactiveFormsModule
   ],
   declarations: [
-    DynamicFormComponent,
-    DynamicListComponent
+    DynamicFormComponent
   ],
   exports: [
     DynamicFormComponent
