@@ -1,9 +1,11 @@
 <h2>Resources</h2>
 <ul class="resources">
-  <li *ngFor="let resource of resources; let i = index" routerLink="/resource/update/{{resource.id}}">
+  <li *ngFor="let resource of resources; let i = index">
     <button (click)="deleteResourceByIndex(i)">Delete</button>
-    {{resource.name}} <br>
-    <span>URL:</span> {{resource.url}}
+    <a routerLink="/resource/update/{{resource.id}}"> {{resource.name}}</a>
+    <br>
+    <span>URL:</span>
+    <a href="//{{resource.url}}">{{resource.url}}</a>
   </li>
 </ul>
 <nav>
