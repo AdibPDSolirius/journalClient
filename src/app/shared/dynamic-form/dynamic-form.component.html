@@ -9,9 +9,10 @@
 <!--</form>-->
 
 <form class="form-container" [formGroup]="formGroup" (ngSubmit)="onSubmit()">
-  <mat-form-field>
-    <input matInput formControlName="name" placeholder="Name">
+  <mat-form-field hintLabel="Max 30 characters">
+    <input matInput #input maxlength="30" formControlName="name" placeholder="Name">
+    <mat-hint align="end">{{input.value?.length || 0}}/30</mat-hint>
   </mat-form-field>
   <br>
-  <button mat-raised-button type="submit" [disabled]="!formGroup.valid">Submit</button>
+  <button mat-raised-button type="submit" [disabled]="!formGroup.valid">Save</button>
 </form>

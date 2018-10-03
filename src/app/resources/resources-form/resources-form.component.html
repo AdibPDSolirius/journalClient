@@ -1,108 +1,160 @@
-<!--<div class="example-container">-->
-  <!--<mat-form-field hintLabel="Max 30 characters">-->
-    <!--<input matInput [(ngModel)]="resource.name"  #name=ngModel minlength="1" maxlength="30" placeholder="Name">-->
-    <!--<mat-hint align="end">{{name.value?.length || 0}}/30</mat-hint>-->
-  <!--</mat-form-field>-->
-  <!--<mat-form-field><input matInput [(ngModel)]="resource.url" #url placeholder="URL"></mat-form-field>-->
-  <!--<mat-form-field>-->
-    <!--<mat-select [(value)]="selectedLanguage">-->
-      <!--<li *ngFor="let language of languages">-->
-        <!--<mat-option value="{{language.id}}">{{language.name}}</mat-option>-->
-      <!--</li>-->
-    <!--</mat-select>-->
-    <!--<button  mat-button (click)="addLanguage()">Add language</button> <br>-->
-  <!--</mat-form-field>-->
-  <!--<mat-list role="list">-->
-    <!--<li *ngFor="let language of resource.languages">-->
-      <!--<mat-option value="{{language}}">{{language.name}}</mat-option>-->
-    <!--</li>-->
-  <!--</mat-list>-->
-  <!--<button mat-button (click)="onEnter()">Submit</button>-->
 
-<!--</div >-->
 
-<!--<div *ngIf="!isValid"-->
-     <!--class="alert alert-danger">-->
-  <!--Name is required-->
-<!--</div>-->
+<!--<button (click)="goBack()">Back</button>-->
+<!--<br><br>-->
+<!--<form [formGroup]="resourceForm" (ngSubmit)="onSubmit()">-->
 
-<button (click)="goBack()">Back</button>
-<br><br>
-<form [formGroup]="resourceForm" (ngSubmit)="onSubmit()">
+  <!--<label>-->
+    <!--Name:-->
+    <!--<input type="text" formControlName="name" required>-->
+  <!--</label>-->
+  <!--<br>-->
+  <!--<label>-->
+    <!--URL:-->
+    <!--<input type="text" formControlName="url">-->
+  <!--</label>-->
+<!--<br>-->
 
-  <label>
-    Name:
-    <input type="text" formControlName="name" required>
-  </label>
-  <br>
-  <label>
-    URL:
-    <input type="text" formControlName="url">
-  </label>
-<br>
+  <!--<h3>Databases</h3>-->
+  <!--<select #selectedDatabase>-->
+    <!--<option *ngFor="let database of databases; let i = index" [value]="i">{{database.name}}</option>-->
+  <!--</select>-->
+  <!--<br>-->
+  <!--<input type="button" (click)="addDatabaseByIndex(+selectedDatabase.value)" value="Add Database">-->
 
-  <h3>Databases</h3>
-  <select #selectedDatabase>
-    <option *ngFor="let database of databases; let i = index" [value]="i">{{database.name}}</option>
-  </select>
-  <br>
-  <input type="button" (click)="addDatabaseByIndex(+selectedDatabase.value)" value="Add Database">
+  <!--<div formArrayName="databases">-->
+    <!--<div *ngFor="let database of getDatabases().controls">-->
+      <!--{{database.value.name}}-->
+      <!--<input type="button" (click)="deleteDatabaseByIndex(+selectedDatabase.value)" value="Delete Database">-->
+    <!--</div>-->
+  <!--</div>-->
 
-  <div formArrayName="databases">
-    <div *ngFor="let database of getDatabases().controls">
+  <!--<h3>Frameworks</h3>-->
+  <!--<select #selectedFramework>-->
+    <!--<option *ngFor="let framework of frameworks; let i = index" [value]="i">{{framework.name}}</option>-->
+  <!--</select>-->
+  <!--<br>-->
+  <!--<input type="button" (click)="addFrameworkByIndex(+selectedFramework.value)" value="Add Framework">-->
+
+  <!--<div formArrayName="frameworks">-->
+    <!--<div *ngFor="let framework of getFrameworks().controls">-->
+      <!--{{framework.value.name}}-->
+      <!--<input type="button" (click)="deleteFrameworkByIndex(+selectedFramework.value)" value="Delete Framework">-->
+    <!--</div>-->
+  <!--</div>-->
+
+
+  <!--<h3>Languages</h3>-->
+  <!--<select #selectedLanguage>-->
+      <!--<option *ngFor="let language of languages; let i = index" [value]="i">{{language.name}}</option>-->
+    <!--</select>-->
+    <!--<br>-->
+  <!--<input type="button" (click)="addLanguageByIndex(+selectedLanguage.value)" value="Add Language">-->
+
+  <!--<div formArrayName="languages">-->
+    <!--<div *ngFor="let language of getLanguages().controls">-->
+      <!--{{language.value.name}}-->
+      <!--<input type="button" (click)="deleteLanguageByIndex(+selectedLanguage.value)" value="Delete Language">-->
+    <!--</div>-->
+  <!--</div>-->
+
+  <!--<h3>Libraries</h3>-->
+  <!--<select #selectedLibrary>-->
+    <!--<option *ngFor="let library of libraries; let i = index" [value]="i">{{library.name}}</option>-->
+  <!--</select>-->
+  <!--<br>-->
+  <!--<input type="button" (click)="addLibraryByIndex(+selectedLibrary.value)" value="Add Library">-->
+
+  <!--<div formArrayName="libraries">-->
+    <!--<div *ngFor="let library of getLibraries().controls">-->
+      <!--{{library.value.name}}-->
+      <!--<input type="button" (click)="deleteLibraryByIndex(+selectedLibrary.value)" value="Delete Library">-->
+    <!--</div>-->
+  <!--</div>-->
+  <!--<br>-->
+  <!--<br>-->
+  <!--<button type="submit" [disabled]="!resourceForm.valid">Submit</button>-->
+<!--</form>-->
+
+<form class="form-container" [formGroup]="resourceForm" (ngSubmit)="onSubmit()">
+  <mat-form-field hintLabel="Max 30 characters">
+    <input matInput #input maxlength="30" formControlName="name" placeholder="Name">
+    <mat-hint align="end">{{input.value?.length || 0}}/30</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput formControlName="url" placeholder="URL">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select #selectedDatabase placeholder="Database">
+      <mat-option *ngFor="let database of databases; let i = index" [value]="i">{{database.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div style="margin: 10px" formArrayName="databases">
+    <ul *ngFor="let database of getDatabases().controls; let i = index">
       {{database.value.name}}
-      <input type="button" (click)="deleteDatabaseByIndex(+selectedDatabase.value)" value="Delete Database">
-    </div>
+      <button type="button" mat-raised-button (click)="deleteDatabaseByIndex(i)">Delete</button>
+      <br>
+    </ul>
   </div>
+  <button type="button" mat-raised-button (click)="addDatabaseByIndex(+selectedDatabase.value)">Add Database</button>
 
-  <h3>Frameworks</h3>
-  <select #selectedFramework>
-    <option *ngFor="let framework of frameworks; let i = index" [value]="i">{{framework.name}}</option>
-  </select>
   <br>
-  <input type="button" (click)="addFrameworkByIndex(+selectedFramework.value)" value="Add Framework">
+  <br>
 
-  <div formArrayName="frameworks">
-    <div *ngFor="let framework of getFrameworks().controls">
+  <mat-form-field>
+    <mat-select #selectedFramework placeholder="Framework">
+      <mat-option *ngFor="let framework of frameworks; let i = index" [value]="i">{{framework.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div style="margin: 10px" formArrayName="frameworks">
+    <ul *ngFor="let framework of getFrameworks().controls; let i = index">
       {{framework.value.name}}
-      <input type="button" (click)="deleteFrameworkByIndex(+selectedFramework.value)" value="Delete Framework">
-    </div>
+      <button type="button" mat-raised-button (click)="deleteFrameworkByIndex(i)">Delete</button>
+    </ul>
   </div>
+  <button type="button" mat-raised-button (click)="addFrameworkByIndex(+selectedFramework.value)">Add Framework</button>
 
+  <br>
+  <br>
 
-  <h3>Languages</h3>
-  <select #selectedLanguage>
-      <option *ngFor="let language of languages; let i = index" [value]="i">{{language.name}}</option>
-    </select>
-    <br>
-  <input type="button" (click)="addLanguageByIndex(+selectedLanguage.value)" value="Add Language">
+  <mat-form-field>
+    <mat-select #selectedLanguage placeholder="Language">
+      <mat-option *ngFor="let language of languages; let i = index" [value]="i">{{language.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
 
-  <div formArrayName="languages">
-    <div *ngFor="let language of getLanguages().controls">
+  <div style="margin: 10px" formArrayName="languages">
+    <ul *ngFor="let language of getLanguages().controls; let i = index">
       {{language.value.name}}
-      <input type="button" (click)="deleteLanguageByIndex(+selectedLanguage.value)" value="Delete Language">
-    </div>
+      <button type="button" mat-raised-button (click)="deleteLanguageByIndex(i)">Delete</button>
+    </ul>
   </div>
+  <button type="button" mat-raised-button (click)="addLanguageByIndex(+selectedLanguage.value)">Add Language</button>
 
-  <h3>Libraries</h3>
-  <select #selectedLibrary>
-    <option *ngFor="let library of libraries; let i = index" [value]="i">{{library.name}}</option>
-  </select>
   <br>
-  <input type="button" (click)="addLibraryByIndex(+selectedLibrary.value)" value="Add Library">
+  <br>
 
-  <div formArrayName="libraries">
-    <div *ngFor="let library of getLibraries().controls">
+  <mat-form-field>
+    <mat-select #selectedLibrary placeholder="Library">
+      <mat-option *ngFor="let library of libraries; let i = index" [value]="i">{{library.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div style="margin: 10px" formArrayName="libraries">
+    <ul *ngFor="let library of getLibraries().controls; let i = index">
       {{library.value.name}}
-      <input type="button" (click)="deleteLibraryByIndex(+selectedLibrary.value)" value="Delete Library">
-    </div>
+      <button type="button" mat-raised-button (click)="deleteLibraryByIndex(i)">Delete</button>
+    </ul>
   </div>
-
-
+  <button type="button" mat-raised-button (click)="addLibraryByIndex(+selectedLanguage.value)">Add Library</button>
 
 
   <br>
-  <br>
-  <button type="submit" [disabled]="!resourceForm.valid">Submit</button>
+  <button mat-raised-button type="submit" [disabled]="!resourceForm.valid">Save</button>
+
 </form>
 

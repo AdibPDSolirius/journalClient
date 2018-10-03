@@ -107,28 +107,52 @@ export class ResourcesFormComponent implements OnInit {
   }
 
   addDatabaseByIndex(index: number): void {
+    if (this.checkIfExistsInFormArray(this.getDatabases(), this.databases[index].id)) {
+      return;
+    }
     this.getDatabases().push(new FormGroup({
       id: new FormControl(this.databases[index].id),
       name: new FormControl(this.databases[index].name)
     }));
   }
   addFrameworkByIndex(index: number): void {
+    if (this.checkIfExistsInFormArray(this.getFrameworks(), this.frameworks[index].id)) {
+      return;
+    }
     this.getFrameworks().push(new FormGroup({
       id: new FormControl(this.frameworks[index].id),
       name: new FormControl(this.frameworks[index].name)
     }));
   }
   addLanguageByIndex(index: number): void {
+    if (this.checkIfExistsInFormArray(this.getLanguages(), this.languages[index].id)) {
+      return;
+    }
     this.getLanguages().push(new FormGroup({
       id: new FormControl(this.languages[index].id),
       name: new FormControl(this.languages[index].name)
     }));
   }
+
   addLibraryByIndex(index: number): void {
+    if (this.checkIfExistsInFormArray(this.getLibraries(), this.libraries[index].id)) {
+      return;
+    }
+
     this.getLibraries().push(new FormGroup({
       id: new FormControl(this.libraries[index].id),
       name: new FormControl(this.libraries[index].name)
     }));
+  }
+
+  checkIfExistsInFormArray(formArray: FormArray, id: number): boolean {
+    for (let i = 0; i < formArray.length; i++) {
+      const curControl = formArray.controls[i];
+      if (curControl.value.id === id) {
+        return true;
+      }
+    }
+    return false;
   }
 
   addDatabase(database: Database): void {
