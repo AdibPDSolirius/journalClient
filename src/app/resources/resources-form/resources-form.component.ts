@@ -3,9 +3,15 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormGroup, FormControl, Validators  } from '@angular/forms';
 import { Location } from '@angular/common';
 
-import {Language} from '../../languages/shared/language';
+import { Database } from '../../databases/shared/database';
+import { DatabaseService } from '../../databases/shared/database.service';
+import { Framework } from '../../frameworks/shared/framework';
+import { FrameworkService } from '../../frameworks/shared/framework.service';
+import { Language } from '../../languages/shared/language';
 import { LanguageService } from '../../languages/shared/language.service';
-import { ResourceService} from '../shared/resource.service';
+import { ResourceService } from '../shared/resource.service';
+import { Library } from '../../libraries/shared/library';
+import { LibraryService } from '../../libraries/shared/library.service';
 
 @Component({
   selector: 'app-resources-form',
@@ -18,14 +24,24 @@ export class ResourcesFormComponent implements OnInit {
     id: new FormControl(''),
     name: new FormControl('', Validators.required),
     url: new FormControl(''),
-    languages: new FormArray([])
+    languages: new FormArray([]),
+    libraries: new FormArray([]),
+    databases: new FormArray([]),
+    frameworks: new FormArray([])
   });
   languages: Language[];
+  libraries: Library[];
+  databases: Database[];
+  frameworks: Framework[];
+
   isUpdate: boolean;
 
   constructor(private route: ActivatedRoute,
               private location: Location,
+              private databaseService: DatabaseService,
+              private frameworkService: FrameworkService,
               private languageService: LanguageService,
+              private libraryService: LibraryService,
               private resourceService: ResourceService
   ) {}
 
@@ -34,7 +50,10 @@ export class ResourcesFormComponent implements OnInit {
     if (this.isUpdate) {
       this.populateResourceFields();
     }
+    this.populateDatabaseFields();
+    this.populateFrameworkFields();
     this.populateLanguageFields();
+    this.populateLibraryFields();
 
   }
 
@@ -62,25 +81,80 @@ export class ResourcesFormComponent implements OnInit {
       this.isUpdate = false;
     }
   }
+
+  deleteDatabaseByIndex(index: number): void {
+    this.getDatabases().removeAt(index);
+  }deleteFrameworkByIndex(index: number): void {
+    this.getFrameworks().removeAt(index);
+  }
   deleteLanguageByIndex(index: number): void {
     this.getLanguages().removeAt(index);
   }
+  deleteLibraryByIndex(index: number): void {
+    this.getLibraries().removeAt(index);
+  }
 
+
+  getDatabases(): FormArray {
+    return this.resourceForm.get('databases') as FormArray;
+  }
+  getFrameworks(): FormArray {
+    return this.resourceForm.get('frameworks') as FormArray;
+  }
   getLanguages(): FormArray {
     return this.resourceForm.get('languages') as FormArray;
   }
+  getLibraries(): FormArray {
+    return this.resourceForm.get('libraries') as FormArray;
+  }
 
+  addDatabaseByIndex(index: number): void {
+    this.getDatabases().push(new FormGroup({
+      id: new FormControl(this.databases[index].id),
+      name: new FormControl(this.databases[index].name)
+    }));
+  }
+  addFrameworkByIndex(index: number): void {
+    this.getFrameworks().push(new FormGroup({
+      id: new FormControl(this.frameworks[index].id),
+      name: new FormControl(this.frameworks[index].name)
+    }));
+  }
   addLanguageByIndex(index: number): void {
     this.getLanguages().push(new FormGroup({
       id: new FormControl(this.languages[index].id),
       name: new FormControl(this.languages[index].name)
     }));
   }
+  addLibraryByIndex(index: number): void {
+    this.getLibraries().push(new FormGroup({
+      id: new FormControl(this.libraries[index].id),
+      name: new FormControl(this.libraries[index].name)
+    }));
+  }
 
+  addDatabase(database: Database): void {
+    this.getDatabases().push(new FormGroup({
+      id: new FormControl(database.id),
+      name: new FormControl(database.name)
+    }));
+  }
+  addFramework(framework: Framework): void {
+    this.getFrameworks().push(new FormGroup({
+      id: new FormControl(framework.id),
+      name: new FormControl(framework.name)
+    }));
+  }
   addLanguage(language: Language): void {
     this.getLanguages().push(new FormGroup({
       id: new FormControl(language.id),
       name: new FormControl(language.name)
+    }));
+  }
+  addLibrary(library: Library): void {
+    this.getLibraries().push(new FormGroup({
+      id: new FormControl(library.id),
+      name: new FormControl(library.name)
     }));
   }
 
@@ -92,16 +166,40 @@ export class ResourcesFormComponent implements OnInit {
          name: resource.name,
          url: resource.url,
        });
-       for (const language of resource.languages) {
+       for (const database of resource.databases) {
+         this.addDatabase(database);
+       }
+       for (const framework of resource.frameworks) {
+         this.addFramework(framework)
+       }
+         for (const language of resource.languages) {
          this.addLanguage(language);
+       }
+       for (const library of resource.libraries) {
+         this.addLibrary(library);
        }
      });
    }
 
+  populateDatabaseFields(): void {
+    this.databaseService.getAll().subscribe(databases => {
+      this.databases = databases;
+    });
+  }
+  populateFrameworkFields(): void {
+    this.frameworkService.getAll().subscribe(frameworks => {
+      this.frameworks = frameworks;
+    });
+  }
    populateLanguageFields(): void {
      this.languageService.getAll().subscribe(languages => {
        this.languages = languages;
      });
    }
+  populateLibraryFields(): void {
+    this.libraryService.getAll().subscribe(libraries => {
+      this.libraries = libraries;
+    });
+  }
 
 }
