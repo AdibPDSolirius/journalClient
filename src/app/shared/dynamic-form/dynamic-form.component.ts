@@ -2,6 +2,7 @@ import { ActivatedRoute } from '@angular/router';
 import {Component, Input, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dynamic-form',
@@ -20,6 +21,7 @@ export class DynamicFormComponent implements OnInit {
   isUpdate: boolean;
 
   constructor(private route: ActivatedRoute,
+              private router: Router,
               private location: Location) {
   }
 

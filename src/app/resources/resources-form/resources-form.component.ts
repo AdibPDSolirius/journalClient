@@ -2,6 +2,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormGroup, FormControl, Validators  } from '@angular/forms';
 import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 import { Database } from '../../databases/shared/database';
 import { DatabaseService } from '../../databases/shared/database.service';
@@ -37,6 +38,7 @@ export class ResourcesFormComponent implements OnInit {
   isUpdate: boolean;
 
   constructor(private route: ActivatedRoute,
+              private router: Router,
               private location: Location,
               private databaseService: DatabaseService,
               private frameworkService: FrameworkService,
@@ -60,11 +62,11 @@ export class ResourcesFormComponent implements OnInit {
   onSubmit() {
     if (this.isUpdate) {
       this.resourceService.updateResource(this.resourceForm.get('id').value, this.resourceForm.getRawValue()).subscribe(resource => {
-        this.goBack();
+        this.router.navigate(['/resource/resources']);
       });
     } else {
       this.resourceService.addResource(this.resourceForm.getRawValue()).subscribe(resource => {
-        this.goBack();
+        this.router.navigate(['/resource/resources']);
       });
     }
   }

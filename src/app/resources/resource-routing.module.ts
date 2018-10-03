@@ -7,6 +7,10 @@ import { ResourcesFormComponent } from './resources-form/resources-form.componen
 const routes: Routes = [
   {path: '', redirectTo: 'resources', pathMatch: 'full'},
   {path: 'resources', component: ResourceListComponent },
+  {path: 'resources/database/:id', component: ResourceListComponent},
+  {path: 'resources/framework/:id', component: ResourceListComponent},
+  {path: 'resources/language/:id', component: ResourceListComponent},
+  {path: 'resources/library/:id', component: ResourceListComponent},
   {path: 'create', component: ResourcesFormComponent},
   {path: 'update/:id', component: ResourcesFormComponent},
 ];

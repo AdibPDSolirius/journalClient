@@ -1,10 +1,9 @@
 import { CommonModule } from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import { NgModule } from '@angular/core';
-import { MatInputModule } from '@angular/material';
-import { MatFormFieldModule} from '@angular/material';
-import { MatSelectModule } from '@angular/material';
-import { MatListModule } from '@angular/material';
+import { MatButtonModule } from '@angular/material';
+import { MatIconModule } from '@angular/material';
+import { MatTableModule } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { ResourcesFormComponent } from './resources-form/resources-form.component';
@@ -16,10 +15,9 @@ import { ResourceRoutingModule } from './resource-routing.module';
   imports: [
     CommonModule,
     FormsModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    MatListModule,
+    MatButtonModule,
+    MatIconModule,
+    MatTableModule,
     ResourceRoutingModule,
     ReactiveFormsModule
 
