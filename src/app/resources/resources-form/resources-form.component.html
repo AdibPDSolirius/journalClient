@@ -13,6 +13,10 @@
     <input matInput formControlName="memo" placeholder="Memo">
   </mat-form-field>
 
+  <angular-file-uploader #imageUpload
+    [config]="afuConfig" (ApiResponse)="afterImageUpload($event)">
+  </angular-file-uploader>
+
   <mat-form-field>
     <mat-select #selectedDatabase placeholder="Database">
       <mat-option *ngFor="let database of databases; let i = index" [value]="i">{{database.name}}</mat-option>

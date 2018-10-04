@@ -1,6 +1,7 @@
+import { AngularFileUploaderModule } from 'angular-file-uploader';
 import { CommonModule } from '@angular/common';
 import { CustomFormsModule } from 'ngx-custom-validators';
-import {FormsModule} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material';
 import { MatIconModule } from '@angular/material';
@@ -18,6 +19,7 @@ import { ResourceRoutingModule } from './resource-routing.module';
 
 @NgModule({
   imports: [
+    AngularFileUploaderModule,
     CommonModule,
     CustomFormsModule,
     FormsModule,

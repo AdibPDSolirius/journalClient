@@ -13,7 +13,7 @@ import { LanguageService } from '../../languages/shared/language.service';
 import { ResourceService } from '../shared/resource.service';
 import { Library } from '../../libraries/shared/library';
 import { LibraryService } from '../../libraries/shared/library.service';
-import {CustomValidators} from 'ngx-custom-validators';
+import { CustomValidators } from 'ngx-custom-validators';
 
 @Component({
   selector: 'app-resources-form',
@@ -27,6 +27,7 @@ export class ResourcesFormComponent implements OnInit {
     name: new FormControl('', Validators.required),
     url: new FormControl('', CustomValidators.url),
     memo: new FormControl(''),
+    file: new FormControl(''),
     languages: new FormArray([]),
     libraries: new FormArray([]),
     databases: new FormArray([]),
@@ -38,6 +39,16 @@ export class ResourcesFormComponent implements OnInit {
   frameworks: Framework[];
 
   isUpdate: boolean;
+
+  afuConfig = {
+    multiple: false,
+    formatsAllowed: '.jpg,.png',
+    maxSize: '1',
+    uploadAPI:  {
+      url: 'http://localhost:8080/file/upload',
+    },
+    hideResetBtn: true,
+  };
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -71,6 +82,12 @@ export class ResourcesFormComponent implements OnInit {
         this.router.navigate(['/resource/resources']);
       });
     }
+  }
+
+  afterImageUpload($event): void {
+    this.resourceForm.patchValue({
+      file: $event.responseText
+    });
   }
 
   determineIsUpdate(): void {
@@ -190,6 +207,7 @@ export class ResourcesFormComponent implements OnInit {
          name: resource.name,
          url: resource.url,
          memo: resource.memo,
+         file: resource.file
        });
        for (const database of resource.databases) {
          this.addDatabase(database);

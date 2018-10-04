@@ -8,6 +8,7 @@ export class Resource {
   name: String;
   url: String;
   memo: String;
+  file: String;
   languages: Language[];
   libraries: Library[];
   databases: Database[];
