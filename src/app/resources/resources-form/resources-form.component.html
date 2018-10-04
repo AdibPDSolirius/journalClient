@@ -1,4 +1,5 @@
 <form class="form-container" [formGroup]="resourceForm" (ngSubmit)="onSubmit()">
+
   <mat-form-field hintLabel="Max 30 characters">
     <input matInput #input maxlength="30" formControlName="name" placeholder="Name">
     <mat-hint align="end">{{input.value?.length || 0}}/30</mat-hint>
@@ -6,6 +7,10 @@
 
   <mat-form-field>
     <input matInput formControlName="url" placeholder="URL">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput formControlName="memo" placeholder="Memo">
   </mat-form-field>
 
   <mat-form-field>

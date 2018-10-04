@@ -26,6 +26,7 @@ export class ResourcesFormComponent implements OnInit {
     id: new FormControl(''),
     name: new FormControl('', Validators.required),
     url: new FormControl('', CustomValidators.url),
+    memo: new FormControl(''),
     languages: new FormArray([]),
     libraries: new FormArray([]),
     databases: new FormArray([]),
@@ -188,6 +189,7 @@ export class ResourcesFormComponent implements OnInit {
          id: resource.id,
          name: resource.name,
          url: resource.url,
+         memo: resource.memo,
        });
        for (const database of resource.databases) {
          this.addDatabase(database);
