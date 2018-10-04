@@ -26,7 +26,10 @@ export class ResourcesFormComponent implements OnInit {
     id: new FormControl(''),
     name: new FormControl('', Validators.required),
     url: new FormControl('', CustomValidators.url),
+<<<<<<< HEAD
     memo: new FormControl(''),
+=======
+>>>>>>> master
     languages: new FormArray([]),
     libraries: new FormArray([]),
     databases: new FormArray([]),
