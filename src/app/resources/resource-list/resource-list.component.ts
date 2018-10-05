@@ -1,6 +1,6 @@
 import { ActivatedRoute } from '@angular/router';
 import {Component, OnInit, ViewChild} from '@angular/core';
-import { MatTableDataSource, MatPaginator } from '@angular/material';
+import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 
 import { Resource } from '../shared/resource';
 import { ResourceService} from '../shared/resource.service';
@@ -14,6 +14,7 @@ export class ResourceListComponent implements OnInit {
 
   resources: MatTableDataSource<Resource>;
   displayedColumns = ['Name', 'URL', 'Databases', 'Frameworks', 'Languages', 'Libraries'];
+  @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private route: ActivatedRoute,
@@ -56,6 +57,7 @@ export class ResourceListComponent implements OnInit {
     this.resourceService.getResources().subscribe(resources => {
       this.resources = new MatTableDataSource(resources);
       this.resources.paginator = this.paginator;
+      this.resources.sort = this.sort;
     });
   }
 
@@ -63,6 +65,7 @@ export class ResourceListComponent implements OnInit {
     this.resourceService.filterResourcesByDatabaseId(id).subscribe(resources => {
       this.resources = new MatTableDataSource(resources);
       this.resources.paginator = this.paginator;
+      this.resources.sort = this.sort;
     });
   }
 
@@ -70,6 +73,7 @@ export class ResourceListComponent implements OnInit {
     this.resourceService.filterResourcesByFrameworkId(id).subscribe(resources => {
       this.resources = new MatTableDataSource(resources);
       this.resources.paginator = this.paginator;
+      this.resources.sort = this.sort;
     });
   }
 
@@ -77,6 +81,7 @@ export class ResourceListComponent implements OnInit {
     this.resourceService.filterResourcesByLanguageId(id).subscribe(resources => {
       this.resources = new MatTableDataSource(resources);
       this.resources.paginator = this.paginator;
+      this.resources.sort = this.sort;
     });
   }
 
@@ -84,6 +89,7 @@ export class ResourceListComponent implements OnInit {
     this.resourceService.filterResourcesByLibraryId(id).subscribe(resources => {
       this.resources = new MatTableDataSource(resources);
       this.resources.paginator = this.paginator;
+      this.resources.sort = this.sort;
     });
   }
 
@@ -97,6 +103,10 @@ export class ResourceListComponent implements OnInit {
 
   applyFilter(filterValue: string) {
     this.resources.filter = filterValue.trim().toLowerCase();
+
+    if (this.resources.paginator) {
+      this.resources.paginator.firstPage();
+    }
   }
 
 }

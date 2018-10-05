@@ -103,6 +103,7 @@ export class ResourcesFormComponent implements OnInit {
   resetFileUpload(): void {
     this.fileUpload1.resetFileUpload();
     this.imageURL = null;
+    this.fileService.deleteFile(this.resourceForm.get('file').value).subscribe();
     this.resourceForm.patchValue({
       file: null
     });
