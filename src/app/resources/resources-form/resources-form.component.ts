@@ -49,7 +49,7 @@ export class ResourcesFormComponent implements OnInit {
     formatsAllowed: '.jpeg,.png',
     maxSize: '2',
     uploadAPI:  {
-      url: 'http://localhost:8080/file/upload',
+      url: 'http://localhost:8080/api/file/upload',
     },
     hideResetBtn: true,
   };

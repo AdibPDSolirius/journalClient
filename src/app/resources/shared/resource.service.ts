@@ -15,43 +15,43 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class ResourceService {
-
+  baseURL = 'https://damp-reaches-85572.herokuapp.com/api/resources/';
 
   constructor(private http: HttpClient) { }
 
   getResources(): Observable<any> {
-    return this.http.get('http://localhost:8080/resources');
+    return this.http.get(this.baseURL);
   }
 
   getResource(id: number): Observable<any> {
-    return this.http.get('http://localhost:8080/resources/' + id);
+    return this.http.get(this.baseURL + id);
   }
 
   addResource(resource: Resource): Observable<Resource> {
-    return this.http.post<Resource>('http://localhost:8080/resources', resource, httpOptions);
+    return this.http.post<Resource>(this.baseURL, resource, httpOptions);
   }
 
   updateResource(id: number, resource: Resource): Observable<Resource> {
-    return this.http.put<Resource>('http://localhost:8080/resources/' + id, resource, httpOptions);
+    return this.http.put<Resource>(this.baseURL + id, resource, httpOptions);
   }
 
   deleteResource(id: number): Observable<any> {
-    return this.http.delete('http://localhost:8080/resources/' + id);
+    return this.http.delete(this.baseURL + id);
   }
 
   filterResourcesByLanguageId(id: number): Observable<any> {
-    return this.http.get('http://localhost:8080/resources/' + 'language/' + id);
+    return this.http.get(this.baseURL + 'language/' + id);
   }
 
   filterResourcesByLibraryId(id: number): Observable<any> {
-    return this.http.get('http://localhost:8080/resources/' + 'library/' + id);
+    return this.http.get(this.baseURL + 'library/' + id);
   }
 
   filterResourcesByDatabaseId(id: number): Observable<any> {
-    return this.http.get('http://localhost:8080/resources/' + 'database/' + id);
+    return this.http.get(this.baseURL + 'database/' + id);
   }
 
   filterResourcesByFrameworkId(id: number): Observable<any> {
-    return this.http.get('http://localhost:8080/resources/' + 'framework/' + id);
+    return this.http.get(this.baseURL + 'framework/' + id);
   }
 }

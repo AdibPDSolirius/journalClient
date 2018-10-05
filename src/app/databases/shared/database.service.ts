@@ -14,7 +14,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class DatabaseService {
-  baseURL = 'http://localhost:8080/databases/';
+  baseURL = 'https://damp-reaches-85572.herokuapp.com/api/databases/';
 
   constructor(private http: HttpClient) { }
 
