@@ -1,11 +1,13 @@
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import {DomSanitizer, SafeUrl} from '@angular/platform-browser';
 import { FormArray, FormGroup, FormControl, Validators  } from '@angular/forms';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 
 import { Database } from '../../databases/shared/database';
 import { DatabaseService } from '../../databases/shared/database.service';
+import { FileService } from '../shared/file.service';
 import { Framework } from '../../frameworks/shared/framework';
 import { FrameworkService } from '../../frameworks/shared/framework.service';
 import { Language } from '../../languages/shared/language';
@@ -37,13 +39,14 @@ export class ResourcesFormComponent implements OnInit {
   libraries: Library[];
   databases: Database[];
   frameworks: Framework[];
+  imageURL: SafeUrl;
 
   isUpdate: boolean;
 
   afuConfig = {
     multiple: false,
-    formatsAllowed: '.jpg,.png',
-    maxSize: '1',
+    formatsAllowed: '.jpeg,.png',
+    maxSize: '2',
     uploadAPI:  {
       url: 'http://localhost:8080/file/upload',
     },
@@ -54,6 +57,8 @@ export class ResourcesFormComponent implements OnInit {
               private router: Router,
               private location: Location,
               private databaseService: DatabaseService,
+              private domSanitizer: DomSanitizer,
+              private fileService: FileService,
               private frameworkService: FrameworkService,
               private languageService: LanguageService,
               private libraryService: LibraryService,
@@ -213,7 +218,7 @@ export class ResourcesFormComponent implements OnInit {
          this.addDatabase(database);
        }
        for (const framework of resource.frameworks) {
-         this.addFramework(framework)
+         this.addFramework(framework);
        }
          for (const language of resource.languages) {
          this.addLanguage(language);
@@ -221,8 +226,24 @@ export class ResourcesFormComponent implements OnInit {
        for (const library of resource.libraries) {
          this.addLibrary(library);
        }
+       if (resource.file) {
+         this.fileService.getFile(resource.file).subscribe(file => {
+           const reader = new FileReader();
+           reader.readAsDataURL(file);
+           let base64data;
+           reader.onloadend = () => {
+             console.log('after reader onloaded');
+              base64data = reader.result;
+             this.imageURL = this.domSanitizer.bypassSecurityTrustUrl(base64data);
+             console.log(this.imageURL);
+           };
+         });
+       }
      });
    }
+
+
+
 
   populateDatabaseFields(): void {
     this.databaseService.getAll().subscribe(databases => {

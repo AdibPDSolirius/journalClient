@@ -16,6 +16,8 @@
   <angular-file-uploader #imageUpload
     [config]="afuConfig" (ApiResponse)="afterImageUpload($event)">
   </angular-file-uploader>
+    <img [src]="imageURL">
+
 
   <mat-form-field>
     <mat-select #selectedDatabase placeholder="Database">
