@@ -55,6 +55,9 @@ export class ResourceListComponent implements OnInit {
 
   populateWithAllResources(): void {
     this.resourceService.getResources().subscribe(resources => {
+      if (!resources) {
+        return;
+      }
       this.resources = new MatTableDataSource(resources);
       this.resources.paginator = this.paginator;
       this.resources.sort = this.sort;
@@ -63,6 +66,9 @@ export class ResourceListComponent implements OnInit {
 
   populateResourcesByDatabaseId(id: number){
     this.resourceService.filterResourcesByDatabaseId(id).subscribe(resources => {
+      if (!resources) {
+        return;
+      }
       this.resources = new MatTableDataSource(resources);
       this.resources.paginator = this.paginator;
       this.resources.sort = this.sort;
@@ -71,6 +77,9 @@ export class ResourceListComponent implements OnInit {
 
   populateResourcesByFrameworkId(id: number){
     this.resourceService.filterResourcesByFrameworkId(id).subscribe(resources => {
+      if (!resources) {
+        return;
+      }
       this.resources = new MatTableDataSource(resources);
       this.resources.paginator = this.paginator;
       this.resources.sort = this.sort;
@@ -79,6 +88,9 @@ export class ResourceListComponent implements OnInit {
 
   populateResourcesByLanguageId(id: number){
     this.resourceService.filterResourcesByLanguageId(id).subscribe(resources => {
+      if (!resources) {
+        return;
+      }
       this.resources = new MatTableDataSource(resources);
       this.resources.paginator = this.paginator;
       this.resources.sort = this.sort;
@@ -87,6 +99,9 @@ export class ResourceListComponent implements OnInit {
 
   populateResourcesByLibraryId(id: number){
     this.resourceService.filterResourcesByLibraryId(id).subscribe(resources => {
+      if (!resources) {
+        return;
+      }
       this.resources = new MatTableDataSource(resources);
       this.resources.paginator = this.paginator;
       this.resources.sort = this.sort;

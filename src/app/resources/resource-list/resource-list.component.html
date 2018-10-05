@@ -3,11 +3,12 @@
 <!--<button mat-raised-button (click)="removeColumn()"> Remove column </button>-->
 <!--<button mat-raised-button (click)="shuffle()"> Shuffle </button>-->
 
+<div *ngIf="resources">
 <mat-form-field>
   <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
 </mat-form-field>
 
-<table mat-table [dataSource]="resources" matSort class="mat-elevation-z8" *ngIf="resources">
+<table mat-table [dataSource]="resources" matSort class="mat-elevation-z8">
 
   <ng-container matColumnDef="Name">
     <th mat-header-cell *matHeaderCellDef> Name </th>
@@ -64,3 +65,4 @@
 </table>
 
 <mat-paginator [pageSizeOptions]="[5, 10]" showFirstLastButtons></mat-paginator>
+</div>
