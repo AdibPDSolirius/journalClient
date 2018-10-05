@@ -1,5 +1,5 @@
 import { ActivatedRoute } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {DomSanitizer, SafeUrl} from '@angular/platform-browser';
 import { FormArray, FormGroup, FormControl, Validators  } from '@angular/forms';
 import { Location } from '@angular/common';
@@ -16,6 +16,7 @@ import { ResourceService } from '../shared/resource.service';
 import { Library } from '../../libraries/shared/library';
 import { LibraryService } from '../../libraries/shared/library.service';
 import { CustomValidators } from 'ngx-custom-validators';
+import {AngularFileUploaderComponent} from 'angular-file-uploader';
 
 @Component({
   selector: 'app-resources-form',
@@ -52,6 +53,9 @@ export class ResourcesFormComponent implements OnInit {
     },
     hideResetBtn: true,
   };
+
+  @ViewChild('fileUpload1')
+  private fileUpload1:  AngularFileUploaderComponent;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -90,8 +94,17 @@ export class ResourcesFormComponent implements OnInit {
   }
 
   afterImageUpload($event): void {
+    this.populateFileField($event.responseText);
     this.resourceForm.patchValue({
       file: $event.responseText
+    });
+  }
+
+  resetFileUpload(): void {
+    this.fileUpload1.resetFileUpload();
+    this.imageURL = null;
+    this.resourceForm.patchValue({
+      file: null
     });
   }
 
@@ -227,22 +240,24 @@ export class ResourcesFormComponent implements OnInit {
          this.addLibrary(library);
        }
        if (resource.file) {
-         this.fileService.getFile(resource.file).subscribe(file => {
-           const reader = new FileReader();
-           reader.readAsDataURL(file);
-           let base64data;
-           reader.onloadend = () => {
-             console.log('after reader onloaded');
-              base64data = reader.result;
-             this.imageURL = this.domSanitizer.bypassSecurityTrustUrl(base64data);
-             console.log(this.imageURL);
-           };
-         });
+         this.populateFileField(resource.file);
        }
      });
    }
 
-
+   populateFileField(fileName: String): void {
+    if (!fileName) {
+      return;
+    }
+    this.fileService.getFile(fileName).subscribe(file => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      let base64data;
+      reader.onloadend = () => {base64data = reader.result;
+      this.imageURL = this.domSanitizer.bypassSecurityTrustUrl(base64data);
+      };
+    });
+   }
 
 
   populateDatabaseFields(): void {

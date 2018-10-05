@@ -1,4 +1,4 @@
-<form class="form-container" [formGroup]="resourceForm" (ngSubmit)="onSubmit()">
+<form class="form-container" [formGroup]="resourceForm">
 
   <mat-form-field hintLabel="Max 30 characters">
     <input matInput #input maxlength="30" formControlName="name" placeholder="Name">
@@ -13,10 +13,14 @@
     <input matInput formControlName="memo" placeholder="Memo">
   </mat-form-field>
 
-  <angular-file-uploader #imageUpload
-    [config]="afuConfig" (ApiResponse)="afterImageUpload($event)">
+  <angular-file-uploader #fileUpload1
+    [config]="afuConfig"
+    (ApiResponse)="afterImageUpload($event)">
   </angular-file-uploader>
-    <img [src]="imageURL">
+  <br>
+  <img *ngIf="imageURL" [src]="imageURL" height="300" width="300">
+  <button *ngIf="imageURL" type="button" mat-raised-button (click)="resetFileUpload()">Remove Image</button>
+  <br>
 
 
   <mat-form-field>
@@ -87,7 +91,7 @@
 
 
   <br>
-  <button mat-raised-button type="submit" [disabled]="!resourceForm.valid">Save</button>
+  <button mat-raised-button type="submit" (click)="onSubmit()" [disabled]="!resourceForm.valid">Save</button>
 
 </form>
 
