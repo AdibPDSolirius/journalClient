@@ -8,7 +8,7 @@ import {Observable, of} from 'rxjs';
 })
 export class FileService {
 
-  baseURL = 'https://damp-reaches-85572.herokuapp.com/api/file/';
+  baseURL = 'https://damp-reaches-85572.herokuapp.com/api/files/';
 
   constructor(private http: HttpClient) {}
 
