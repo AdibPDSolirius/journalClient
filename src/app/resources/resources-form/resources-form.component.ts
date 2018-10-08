@@ -49,7 +49,7 @@ export class ResourcesFormComponent implements OnInit {
     formatsAllowed: '.jpeg,.png',
     maxSize: '2',
     uploadAPI:  {
-      url: 'https://damp-reaches-85572.herokuapp.com/api/file/upload',
+      url: 'https://damp-reaches-85572.herokuapp.com/api/files/upload',
     },
     hideResetBtn: true,
   };
