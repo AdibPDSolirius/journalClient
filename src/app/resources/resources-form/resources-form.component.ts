@@ -82,7 +82,6 @@ export class ResourcesFormComponent implements OnInit {
   }
 
   onSubmit() {
-    if(this.resourceForm.
     if (this.isUpdate) {
       this.resourceService.updateResource(this.resourceForm.get('id').value, this.resourceForm.getRawValue()).subscribe(resource => {
         this.router.navigate(['/resource/resources']);
