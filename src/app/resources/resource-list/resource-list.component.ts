@@ -59,8 +59,8 @@ export class ResourceListComponent implements OnInit {
         return;
       }
       this.resources = new MatTableDataSource(resources);
-      this.resources.paginator = this.paginator;
-      this.resources.sort = this.sort;
+      setTimeout(() => this.resources.paginator = this.paginator);
+      setTimeout(() => this.resources.sort = this.sort);
     });
   }
 
@@ -70,8 +70,8 @@ export class ResourceListComponent implements OnInit {
         return;
       }
       this.resources = new MatTableDataSource(resources);
-      this.resources.paginator = this.paginator;
-      this.resources.sort = this.sort;
+      setTimeout(() => this.resources.paginator = this.paginator);
+      setTimeout(() => this.resources.sort = this.sort);
     });
   }
 
@@ -81,8 +81,8 @@ export class ResourceListComponent implements OnInit {
         return;
       }
       this.resources = new MatTableDataSource(resources);
-      this.resources.paginator = this.paginator;
-      this.resources.sort = this.sort;
+      setTimeout(() => this.resources.paginator = this.paginator);
+      setTimeout(() => this.resources.sort = this.sort);
     });
   }
 
@@ -92,8 +92,8 @@ export class ResourceListComponent implements OnInit {
         return;
       }
       this.resources = new MatTableDataSource(resources);
-      this.resources.paginator = this.paginator;
-      this.resources.sort = this.sort;
+      setTimeout(() => this.resources.paginator = this.paginator);
+      setTimeout(() => this.resources.sort = this.sort);
     });
   }
 
@@ -103,8 +103,8 @@ export class ResourceListComponent implements OnInit {
         return;
       }
       this.resources = new MatTableDataSource(resources);
-      this.resources.paginator = this.paginator;
-      this.resources.sort = this.sort;
+      setTimeout(() => this.resources.paginator = this.paginator);
+      setTimeout(() => this.resources.sort = this.sort);
     });
   }
 
