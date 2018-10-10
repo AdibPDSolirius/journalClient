@@ -1,5 +1,5 @@
 import { ActivatedRoute } from '@angular/router';
-import {Component, OnInit, ViewChild} from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 
 import { Resource } from '../shared/resource';
@@ -13,11 +13,12 @@ import { ResourceService} from '../shared/resource.service';
 export class ResourceListComponent implements OnInit {
 
   resources: MatTableDataSource<Resource>;
-  displayedColumns = ['Name', 'URL', 'Databases', 'Frameworks', 'Languages', 'Libraries'];
+  displayedColumns = ['Name', 'URL', 'Databases', 'Frameworks', 'Languages', 'Libraries', 'Actions'];
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private route: ActivatedRoute,
+  constructor(private changeDetectorRef: ChangeDetectorRef,
+              private route: ActivatedRoute,
               private resourceService: ResourceService) { }
 
   ngOnInit() {
@@ -55,64 +56,41 @@ export class ResourceListComponent implements OnInit {
 
   populateWithAllResources(): void {
     this.resourceService.getResources().subscribe(resources => {
-      if (!resources) {
-        return;
-      }
-      this.resources = new MatTableDataSource(resources);
-      setTimeout(() => this.resources.paginator = this.paginator);
-      setTimeout(() => this.resources.sort = this.sort);
+      this.reset(resources);
     });
   }
 
   populateResourcesByDatabaseId(id: number){
     this.resourceService.filterResourcesByDatabaseId(id).subscribe(resources => {
-      if (!resources) {
-        return;
-      }
-      this.resources = new MatTableDataSource(resources);
-      setTimeout(() => this.resources.paginator = this.paginator);
-      setTimeout(() => this.resources.sort = this.sort);
+      this.reset(resources);
     });
   }
 
   populateResourcesByFrameworkId(id: number){
     this.resourceService.filterResourcesByFrameworkId(id).subscribe(resources => {
-      if (!resources) {
-        return;
-      }
-      this.resources = new MatTableDataSource(resources);
-      setTimeout(() => this.resources.paginator = this.paginator);
-      setTimeout(() => this.resources.sort = this.sort);
+      this.reset(resources);
     });
   }
 
   populateResourcesByLanguageId(id: number){
     this.resourceService.filterResourcesByLanguageId(id).subscribe(resources => {
-      if (!resources) {
-        return;
-      }
-      this.resources = new MatTableDataSource(resources);
-      setTimeout(() => this.resources.paginator = this.paginator);
-      setTimeout(() => this.resources.sort = this.sort);
+      this.reset(resources);
     });
   }
 
   populateResourcesByLibraryId(id: number){
     this.resourceService.filterResourcesByLibraryId(id).subscribe(resources => {
-      if (!resources) {
-        return;
-      }
-      this.resources = new MatTableDataSource(resources);
-      setTimeout(() => this.resources.paginator = this.paginator);
-      setTimeout(() => this.resources.sort = this.sort);
+      this.reset(resources);
     });
   }
 
 
   deleteResourceByIndex(index: number): void {
     if (index > -1) {
-      this.resourceService.deleteResource(this.resources[index].id).subscribe();
+      this.resourceService.deleteResource(this.resources.data[index].id).subscribe();
       this.resources.data.splice(index, 1);
+      this.resources.paginator = this.paginator;
+      this.resources.sort = this.sort
     }
   }
 
@@ -122,6 +100,15 @@ export class ResourceListComponent implements OnInit {
     if (this.resources.paginator) {
       this.resources.paginator.firstPage();
     }
+  }
+
+  reset(resources: Resource[]): void {
+    if (!resources) {
+      return;
+    }
+    this.resources = new MatTableDataSource<Resource>(resources);
+    setTimeout(() => this.resources.paginator = this.paginator);
+    setTimeout(() => this.resources.sort = this.sort);
   }
 
 }

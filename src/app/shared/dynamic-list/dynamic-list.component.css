@@ -5,3 +5,14 @@ table {
 button {
   margin: 16px 8px;
 }
+
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.mat-form-field {
+  padding-left: 1%;
+  font-size: 14px;
+  width: 100%;
+}

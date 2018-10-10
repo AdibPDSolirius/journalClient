@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatButtonModule } from '@angular/material';
-import { MatTableModule } from '@angular/material';
+import { MatButtonModule, MatFormFieldModule, MatInputModule, MatPaginatorModule, MatTableModule } from '@angular/material';
 import { RouterModule } from '@angular/router';
 
 import { DynamicListComponent } from './dynamic-list.component';
@@ -10,6 +9,9 @@ import { DynamicListComponent } from './dynamic-list.component';
   imports: [
     CommonModule,
     MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatPaginatorModule,
     MatTableModule,
     RouterModule
   ],

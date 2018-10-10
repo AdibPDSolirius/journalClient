@@ -1,14 +1,29 @@
 <button mat-raised-button routerLink="/{{name | lowercase}}/create"> Add {{name | titlecase}}</button>
 
-<table mat-table [dataSource]="data" class="mat-elevation-z8" *ngIf="data">
+<div *ngIf="tableData">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
 
-  <ng-container matColumnDef="Name">
-    <th mat-header-cell *matHeaderCellDef> Name </th>
-    <td mat-cell *matCellDef="let singleData">
-      <a routerLink="/{{name | lowercase}}/update/{{singleData.id}}"> {{singleData.name}}</a>
-    </td>
-  </ng-container>
+  <table mat-table [dataSource]="tableData" class="mat-elevation-z8">
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
+    <ng-container matColumnDef="Name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let singleData">
+        <a routerLink="/{{name | lowercase}}/update/{{singleData.id}}"> {{singleData.name}}</a>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Actions">
+      <th mat-header-cell *matHeaderCellDef> Actions </th>
+      <td mat-cell *matCellDef="let i = index">
+        <button mat-raised-button  (click)="deleteSingleDataByIndex(i)"> Delete </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10]"></mat-paginator>
+</div>
