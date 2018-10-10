@@ -90,7 +90,7 @@ export class ResourceListComponent implements OnInit {
       this.resourceService.deleteResource(this.resources.data[index].id).subscribe();
       this.resources.data.splice(index, 1);
       this.resources.paginator = this.paginator;
-      this.resources.sort = this.sort
+      this.resources.sort = this.sort;
     }
   }
 
