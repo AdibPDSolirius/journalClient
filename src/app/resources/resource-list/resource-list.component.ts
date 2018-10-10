@@ -109,6 +109,41 @@ export class ResourceListComponent implements OnInit {
     this.resources = new MatTableDataSource<Resource>(resources);
     setTimeout(() => this.resources.paginator = this.paginator);
     setTimeout(() => this.resources.sort = this.sort);
+    this.resources.filterPredicate =
+      (data: Resource, filter: string) => {
+        if (data.name.toLowerCase().includes(filter)) {
+          return true;
+        }
+        if (data.url.toLowerCase().includes(filter)) {
+          return true;
+        }
+        if (data.memo.toLowerCase().includes(filter)) {
+          return true;
+        }
+        if (data.file.toLowerCase().includes(filter)) {
+          return true;
+        }
+        for (const db of data.databases) {
+          if (db.name.toLowerCase().includes(filter)) {
+            return true;
+          }
+        }
+        for (const fw of data.frameworks) {
+          if (fw.name.toLowerCase().includes(filter)) {
+            return true;
+          }
+        }
+        for (const la of data.languages) {
+          if (la.name.toLowerCase().includes(filter)) {
+            return true;
+          }
+        }
+        for (const li of data.libraries) {
+          if (li.name.toLowerCase().includes(filter)) {
+            return true;
+          }
+        }
+      };
   }
 
 }
