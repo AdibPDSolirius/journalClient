@@ -26,6 +26,7 @@
   <mat-form-field>
     <mat-select #selectedDatabase placeholder="Database">
       <mat-option *ngFor="let database of databases; let i = index" [value]="i">{{database.name}}</mat-option>
+      <mat-option [value]="null"></mat-option>
     </mat-select>
   </mat-form-field>
 
@@ -44,6 +45,7 @@
   <mat-form-field>
     <mat-select #selectedFramework placeholder="Framework">
       <mat-option *ngFor="let framework of frameworks; let i = index" [value]="i">{{framework.name}}</mat-option>
+      <mat-option [value]="null"></mat-option>
     </mat-select>
   </mat-form-field>
 
@@ -61,6 +63,7 @@
   <mat-form-field>
     <mat-select #selectedLanguage placeholder="Language">
       <mat-option *ngFor="let language of languages; let i = index" [value]="i">{{language.name}}</mat-option>
+      <mat-option [value]="null"></mat-option>
     </mat-select>
   </mat-form-field>
 
@@ -78,6 +81,7 @@
   <mat-form-field>
     <mat-select #selectedLibrary placeholder="Library">
       <mat-option *ngFor="let library of libraries; let i = index" [value]="i">{{library.name}}</mat-option>
+      <mat-option [value]="null"></mat-option>
     </mat-select>
   </mat-form-field>
 
