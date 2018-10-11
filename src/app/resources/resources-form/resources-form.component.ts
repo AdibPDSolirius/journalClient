@@ -82,6 +82,13 @@ export class ResourcesFormComponent implements OnInit {
   }
 
   onSubmit() {
+    if (this.imageURL == null){
+      const filename = this.resourceForm.get('file').value;
+      this.resourceForm.patchValue({
+        file: null
+      });
+      this.fileService.deleteFile(filename).subscribe();
+    }
     if (this.isUpdate) {
       this.resourceService.updateResource(this.resourceForm.get('id').value, this.resourceForm.getRawValue()).subscribe(resource => {
         this.router.navigate(['/resource/resources']);
@@ -103,9 +110,6 @@ export class ResourcesFormComponent implements OnInit {
   resetFileUpload(): void {
     this.fileUpload1.resetFileUpload();
     this.imageURL = null;
-    this.resourceForm.patchValue({
-      file: null
-    });
   }
 
   determineIsUpdate(): void {
