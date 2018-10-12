@@ -19,12 +19,12 @@ export class LibraryService {
 
   constructor(private http: HttpClient) { }
 
-  getAll(): Observable<any> {
-    return this.http.get(this.baseURL);
+  getAll(): Observable<Library[]> {
+    return this.http.get<Library[]>(this.baseURL);
   }
 
-  get(id: number): Observable<any> {
-    return this.http.get(this.baseURL + id);
+  get(id: number): Observable<Library> {
+    return this.http.get<Library>(this.baseURL + id);
   }
 
   add(library: Library): Observable<Library> {
@@ -35,7 +35,7 @@ export class LibraryService {
     return this.http.put<Library>(this.baseURL + id, library, httpOptions);
   }
 
-  delete(id: number): Observable<any> {
-    return this.http.delete(this.baseURL + id);
+  delete(id: number): Observable<Library> {
+    return this.http.delete<Library>(this.baseURL + id);
   }
 }

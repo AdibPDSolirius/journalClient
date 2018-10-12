@@ -19,12 +19,12 @@ export class LanguageService {
 
   constructor(private http: HttpClient) { }
 
-  getAll(): Observable<any> {
-    return this.http.get(this.baseURL);
+  getAll(): Observable<Language[]> {
+    return this.http.get<Language[]>(this.baseURL);
   }
 
-  get(id: number): Observable<any> {
-    return this.http.get(this.baseURL + id);
+  get(id: number): Observable<Language> {
+    return this.http.get<Language>(this.baseURL + id);
   }
 
   add(language: Language): Observable<Language> {
@@ -35,7 +35,7 @@ export class LanguageService {
     return this.http.put<Language>(this.baseURL + id, language, httpOptions);
   }
 
-  delete(id: number): Observable<any> {
-    return this.http.delete(this.baseURL + id);
+  delete(id: number): Observable<Language> {
+    return this.http.delete<Language>(this.baseURL + id);
   }
 }

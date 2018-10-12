@@ -19,12 +19,12 @@ export class FrameworkService {
 
   constructor(private http: HttpClient) { }
 
-  getAll(): Observable<any> {
-    return this.http.get(this.baseURL);
+  getAll(): Observable<Framework[]> {
+    return this.http.get<Framework[]>(this.baseURL);
   }
 
-  get(id: number): Observable<any> {
-    return this.http.get(this.baseURL + id);
+  get(id: number): Observable<Framework> {
+    return this.http.get<Framework>(this.baseURL + id);
   }
 
   add(framework: Framework): Observable<Framework> {
@@ -35,7 +35,7 @@ export class FrameworkService {
     return this.http.put<Framework>(this.baseURL + id, framework, httpOptions);
   }
 
-  delete(id: number): Observable<any> {
-    return this.http.delete(this.baseURL + id);
+  delete(id: number): Observable<Framework> {
+    return this.http.delete<Framework>(this.baseURL + id);
   }
 }

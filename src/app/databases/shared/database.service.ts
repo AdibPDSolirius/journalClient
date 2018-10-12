@@ -18,12 +18,12 @@ export class DatabaseService {
 
   constructor(private http: HttpClient) { }
 
-  getAll(): Observable<any> {
-    return this.http.get(this.baseURL);
+  getAll(): Observable<Database[]> {
+    return this.http.get<Database[]>(this.baseURL);
   }
 
-  get(id: number): Observable<any> {
-    return this.http.get(this.baseURL + id);
+  get(id: number): Observable<Database> {
+    return this.http.get<Database>(this.baseURL + id);
   }
 
   add(database: Database): Observable<Database> {
@@ -34,7 +34,7 @@ export class DatabaseService {
     return this.http.put<Database>(this.baseURL + id, database, httpOptions);
   }
 
-  delete(id: number): Observable<any> {
-    return this.http.delete(this.baseURL + id);
+  delete(id: number): Observable<Database> {
+    return this.http.delete<Database>(this.baseURL + id);
   }
 }

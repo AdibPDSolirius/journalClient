@@ -19,12 +19,12 @@ export class ResourceService {
 
   constructor(private http: HttpClient) { }
 
-  getResources(): Observable<any> {
-    return this.http.get(this.baseURL);
+  getResources(): Observable<Resource[]> {
+    return this.http.get<Resource[]>(this.baseURL);
   }
 
-  getResource(id: number): Observable<any> {
-    return this.http.get(this.baseURL + id);
+  getResource(id: number): Observable<Resource> {
+    return this.http.get<Resource>(this.baseURL + id);
   }
 
   addResource(resource: Resource): Observable<Resource> {
@@ -35,23 +35,23 @@ export class ResourceService {
     return this.http.put<Resource>(this.baseURL + id, resource, httpOptions);
   }
 
-  deleteResource(id: number): Observable<any> {
-    return this.http.delete(this.baseURL + id);
+  deleteResource(id: number): Observable<Resource> {
+    return this.http.delete<Resource>(this.baseURL + id);
   }
 
-  filterResourcesByLanguageId(id: number): Observable<any> {
-    return this.http.get(this.baseURL + 'language/' + id);
+  filterResourcesByLanguageId(id: number): Observable<Resource[]> {
+    return this.http.get<Resource[]>(this.baseURL + 'language/' + id);
   }
 
-  filterResourcesByLibraryId(id: number): Observable<any> {
-    return this.http.get(this.baseURL + 'library/' + id);
+  filterResourcesByLibraryId(id: number): Observable<Resource[]> {
+    return this.http.get<Resource[]>(this.baseURL + 'library/' + id);
   }
 
-  filterResourcesByDatabaseId(id: number): Observable<any> {
-    return this.http.get(this.baseURL + 'database/' + id);
+  filterResourcesByDatabaseId(id: number): Observable<Resource[]> {
+    return this.http.get<Resource[]>(this.baseURL + 'database/' + id);
   }
 
-  filterResourcesByFrameworkId(id: number): Observable<any> {
-    return this.http.get(this.baseURL + 'framework/' + id);
+  filterResourcesByFrameworkId(id: number): Observable<Resource[]> {
+    return this.http.get<Resource[]>(this.baseURL + 'framework/' + id);
   }
 }
