@@ -26,7 +26,7 @@ fdescribe('DatabaseService', () => {
 
   afterEach(() => {
     httpMock.verify();
-  })
+  });
 
   it('should be created', () => {
     expect(service).toBeTruthy();

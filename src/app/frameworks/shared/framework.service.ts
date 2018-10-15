@@ -15,7 +15,8 @@ const httpOptions = {
 })
 export class FrameworkService {
 
-  baseURL = 'https://damp-reaches-85572.herokuapp.com/api/frameworks/';
+  // baseURL = 'https://damp-reaches-85572.herokuapp.com/api/frameworks/';
+  baseURL = 'http://localhost:8080/api/frameworks/';
 
   constructor(private http: HttpClient) { }
 

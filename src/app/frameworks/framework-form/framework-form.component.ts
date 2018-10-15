@@ -14,7 +14,7 @@ export class FrameworkFormComponent implements OnInit {
   ngOnInit() {
   }
 
-  getFrameworkService(): FrameworkService{
+  getFrameworkService(): FrameworkService {
     return this.frameworkService;
   }
 

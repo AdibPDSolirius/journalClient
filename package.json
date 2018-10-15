@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "postinstall": "ng build --aot --prod",
+    // Removed --aot because --prod provides that functionality, although if an error has occured try bringing it back
+    "postinstall": "ng build --prod",
     "start": "node server.js",
     "build": "ng build",
     "test": "ng test",

@@ -82,7 +82,7 @@ export class ResourcesFormComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.imageURL == null){
+    if (this.imageURL == null) {
       const filename = this.resourceForm.get('file').value;
       this.resourceForm.patchValue({
         file: null

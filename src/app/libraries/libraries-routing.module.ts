@@ -9,7 +9,7 @@ const routes: Routes = [
   {path: 'libraries', component: LibraryListComponent},
   {path: 'create', component: LibraryFormComponent},
   {path: 'update/:id', component: LibraryFormComponent}
-]
+];
 
 @NgModule({
   imports: [

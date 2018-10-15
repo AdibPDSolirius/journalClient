@@ -60,25 +60,25 @@ export class ResourceListComponent implements OnInit {
     });
   }
 
-  populateResourcesByDatabaseId(id: number){
+  populateResourcesByDatabaseId(id: number) {
     this.resourceService.filterResourcesByDatabaseId(id).subscribe(resources => {
       this.reset(resources);
     });
   }
 
-  populateResourcesByFrameworkId(id: number){
+  populateResourcesByFrameworkId(id: number) {
     this.resourceService.filterResourcesByFrameworkId(id).subscribe(resources => {
       this.reset(resources);
     });
   }
 
-  populateResourcesByLanguageId(id: number){
+  populateResourcesByLanguageId(id: number) {
     this.resourceService.filterResourcesByLanguageId(id).subscribe(resources => {
       this.reset(resources);
     });
   }
 
-  populateResourcesByLibraryId(id: number){
+  populateResourcesByLibraryId(id: number) {
     this.resourceService.filterResourcesByLibraryId(id).subscribe(resources => {
       this.reset(resources);
     });

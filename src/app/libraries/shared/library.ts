@@ -1,4 +1,4 @@
-export interface Library{
+export interface Library {
   id?: number;
   name: String;
 }
