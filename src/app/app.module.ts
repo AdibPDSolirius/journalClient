@@ -6,11 +6,13 @@ import { MatTabsModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { SnakeComponent } from './snake/snake.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    SnakeComponent,
   ],
   imports: [
     AppRoutingModule,
