@@ -20,6 +20,9 @@ export class GameCanvas {
         canvas.width = width;
         canvas.height = height
         canvas.style.border = border;
+        canvas.style.position = "absolute";
+        canvas.style.bottom = "0";
+        canvas.style.right="0";
     }
 
     render() {
