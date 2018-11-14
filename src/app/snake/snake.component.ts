@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Game } from '../SnakeGame/game.js';
-import { MEDIUM } from '../SnakeGame/gameSpeed.js'
+import { Game } from '../snakeGame/game.js';
+import { MEDIUM } from '../snakeGame/gameSpeed.js';
 
 @Component({
   selector: 'app-snake',
