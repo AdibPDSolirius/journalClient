@@ -15,8 +15,8 @@ const httpOptions = {
 })
 export class LanguageService {
 
-  // baseURL = 'https://damp-reaches-85572.herokuapp.com/api/languages/';
-  baseURL = 'http://localhost:8080/api/languages/';
+  baseURL = 'https://damp-reaches-85572.herokuapp.com/api/languages/';
+  // baseURL = 'http://localhost:8080/api/languages/';
 
   constructor(private http: HttpClient) { }
 

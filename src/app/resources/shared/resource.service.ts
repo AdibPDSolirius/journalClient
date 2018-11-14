@@ -15,8 +15,8 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class ResourceService {
-  // baseURL = 'https://damp-reaches-85572.herokuapp.com/api/resources/';
-    baseURL = 'http://localhost:8080/api/resources/';
+  baseURL = 'https://damp-reaches-85572.herokuapp.com/api/resources/';
+    // baseURL = 'http://localhost:8080/api/resources/';
 
   constructor(private http: HttpClient) { }
 

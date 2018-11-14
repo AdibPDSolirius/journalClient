@@ -15,8 +15,8 @@ const httpOptions = {
 })
 export class LibraryService {
 
-  // baseURL = 'https://damp-reaches-85572.herokuapp.com/api/libraries/';
-  baseURL = 'http://localhost:8080/api/libraries/';
+  baseURL = 'https://damp-reaches-85572.herokuapp.com/api/libraries/';
+  // baseURL = 'http://localhost:8080/api/libraries/';
 
   constructor(private http: HttpClient) { }
 
